@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import '../Widget/mainWidget.dart';
+import 'SignUp.dart';
+import 'Login.dart';
 
-import 'regestrition.dart';
-import 'signin.dart';
-
-import '../my_buttom.dart';
+import '../Widget/My_Buttom.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String screenRoute = 'welcomechat';
@@ -22,73 +22,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           //  crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Column(
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                Container(
-                  height: 350,
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(90)),
-                    color: Colors.black,
-                    gradient: LinearGradient(
-                      //mix color's
-                      colors: [(Colors.white), Colors.black],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                  child: Center(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          "images/lo1.png",
-                          height: 180,
-                          width: 180,
-                        ),
-                      ),
-                      const Text(
-                        "Safe Health Care",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 26.0,
-                            fontFamily: 'IndieFlower'),
-                      ),
-                      // Container(
-                      //   margin: EdgeInsets.only(right: 20, top: 20),
-                      //   alignment: Alignment.bottomRight,
-                      //   child: GestureDetector(
-                      //     onTap: () {
-                      //       Navigator.pop(context);
-                      //       // Write Click Listener Code Here.
-
-                      //       // Write Click Listener Code Here
-                      //     },
-                      //     child: Icon(
-                      //       Icons.arrow_back,
-                      //       color: Colors.white,
-                      //     ),
-                      //   ),
-                      // )
-                    ],
-                  )),
-                ),
-
-                // Container(
-                //   height: 250,
-                //   child: Image.asset('images/lo1.png'),
-                // ),
+                MyWidget(),
                 const SizedBox(height: 50),
-
                 const Text(
                   'Please Login Or Sign Up ',
                   style: TextStyle(
                     fontSize: 30,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'IndieFlower',
                     color: Colors.black,
                   ),
@@ -105,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             MyButton(
               color: Colors.black,
-              title: 'SignUp',
+              title: 'Sign Up',
               onPressed: () {
                 Navigator.pushNamed(context, 'reg');
               },

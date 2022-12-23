@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       body: Body(),
       // We are not able to BottomNavigationBar because the icon parameter dont except SVG
       // We also use Provied to manage the state of our Nav
-     // bottomNavigationBar: MyBottomNavBar(),
+      // bottomNavigationBar: MyBottomNavBar(),
     );
   }
 
@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
         ),
         SizedBox(
           // It means 5 because by out defaultSize = 10
-          width: SizeConfig.defaultSize !* 0.5,
+          width: SizeConfig.defaultSize! * 0.5,
         )
       ],
     );

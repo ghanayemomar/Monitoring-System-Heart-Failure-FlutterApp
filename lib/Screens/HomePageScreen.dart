@@ -1,60 +1,35 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'HomeView.dart';
-import 'appHome.dart';
+import '../Widget/HomePicture.dart';
+import '../Widget/AppHomeBar.dart';
 
-class HomeP extends StatefulWidget {
+class HomePageScreen extends StatefulWidget {
   @override
-  _HomePState createState() => _HomePState();
+  _HomePageScreenState createState() => _HomePageScreenState();
 }
 
 bool _iconBool = false;
 IconData _iconLight = Icons.wb_sunny;
 IconData _iconDark = Icons.nights_stay;
 
-class _HomePState extends State<HomeP> {
+class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: ListView(
         children: [
-          appHome(),
-
-          // Container(
-          //
-          //   // height: 500,
-          //   padding: EdgeInsets.only(top: 15),
-          //   decoration: BoxDecoration(
-          //     color: Colors.white,
-          //     borderRadius: BorderRadius.only(
-          //       topLeft: Radius.circular(35),
-          //       topRight: Radius.circular(35),
-          //     ),
-          //   ),
-          // ),
+          appHomeBar(),
           HomeView(),
           Container(
-            child: Row(
-              children: [
-                Text(
-                  " Application Services : ",
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 20,
-                    top: 50,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 110, top: 4),
-                ),
-              ],
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            child: const Text(
+              " Application Services : ",
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ),
           Container(
@@ -107,9 +82,6 @@ class _HomePState extends State<HomeP> {
             ),
           )
         ],
-        // onTap: (index) {
-        //   //Handle button tap
-        // },
       ),
     );
   }
@@ -131,11 +103,11 @@ class _HomePState extends State<HomeP> {
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
-            bottomLeft: Radius.circular(14),
-            bottomRight: Radius.circular(14),
-          ),
+              // topLeft: Radius.circular(14),
+              // topRight: Radius.circular(14),
+              // bottomLeft: Radius.circular(14),
+              // bottomRight: Radius.circular(14),
+              ),
           boxShadow: [BoxShadow()],
         ),
         child: Column(
