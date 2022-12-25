@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/Simple_Map.dart';
 import 'package:oma/profile/prrofile_screen.dart';
-import 'package:oma/Screens/SignUp.dart';
-import 'package:oma/Screens/Login.dart';
+import 'package:oma/Screens/SignUpScreen.dart';
+import 'package:oma/Screens/LoginScreen.dart';
 import 'package:oma/Screens/Splash_Screen.dart';
 import 'package:oma/Screens/Welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,17 +29,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       routes: {
-        "sign": (context) => SignInScreen(),
-        "reg": (context) => RegistrationScreen(),
-        "SignInScreen": (context) => SignInScreen(),
-        "d": (context) => NavigationDrawer(),
-        "log": (context) => HomePageScreen(),
-        "profile": (context) => ProfileScreen(),
-        "out": (context) => SignInScreen(),
-        "prof": (context) => ProfileScreen(),
+        LoginScreen.screenRoute: (context) => LoginScreen(),
+        SignUpScreen.screenRoute: (context) => SignUpScreen(),
+        HomePageScreen.screenRoute: (context) => HomePageScreen(),
         WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-        SignInScreen.screenRoute: (context) => SignInScreen(),
-        RegistrationScreen.screenRoute: (context) => RegistrationScreen(),
+        SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
+        "d": (context) => NavigationDrawer(),
+        "profile": (context) => ProfileScreen(),
+        "out": (context) => LoginScreen(),
+        "prof": (context) => ProfileScreen(),
       },
       home: SplashScreen(),
     );

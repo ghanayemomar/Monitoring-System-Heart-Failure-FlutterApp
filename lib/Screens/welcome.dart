@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../Widget/mainWidget.dart';
-import 'SignUp.dart';
-import 'Login.dart';
+import './SignUpScreen.dart';
+import './LoginScreen.dart';
 
 import '../Widget/My_Buttom.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const String screenRoute = 'welcomechat';
+  static const String screenRoute = 'Welcome';
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -42,14 +42,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               color: Colors.black,
               title: 'Login',
               onPressed: () {
-                Navigator.pushNamed(context, 'sign');
+                Navigator.pushNamed(context, LoginScreen.screenRoute);
               },
             ),
             MyButton(
               color: Colors.black,
               title: 'Sign Up',
               onPressed: () {
-                Navigator.pushNamed(context, 'reg');
+                Navigator.pushNamed(context, SignUpScreen.screenRoute);
               },
             )
           ],

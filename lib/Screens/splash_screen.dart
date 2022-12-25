@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:oma/Screens/Welcome.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String screenRoute = 'Splash_Screen';
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

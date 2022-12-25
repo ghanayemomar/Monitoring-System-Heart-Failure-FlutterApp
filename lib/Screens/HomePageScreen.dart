@@ -1,9 +1,12 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/Simple_Map.dart';
 import '../Widget/HomePicture.dart';
 import '../Widget/AppHomeBar.dart';
 
 class HomePageScreen extends StatefulWidget {
+  static const String screenRoute = 'HomePageScreen';
+
   @override
   _HomePageScreenState createState() => _HomePageScreenState();
 }
@@ -74,9 +77,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, SimpleMapScreen.screenRoute);
+            },
             child: const Icon(
-              Icons.file_copy,
+              Icons.map,
               size: 30,
               color: Colors.white,
             ),

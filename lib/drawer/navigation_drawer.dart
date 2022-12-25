@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/Welcome.dart';
 
 import 'drawer_item.dart';
 import 'people.dart';
@@ -62,7 +63,7 @@ class NavigationDrawer extends StatelessWidget {
                   name: 'LogOut',
                   icon: Icons.logout,
                   onPressed: () {
-                    Navigator.pushNamed(context, 'out');
+                    Navigator.pushNamed(context, WelcomeScreen.screenRoute);
                   }),
             ],
           ),

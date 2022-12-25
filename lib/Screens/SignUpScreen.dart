@@ -1,19 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/LoginScreen.dart';
 import '../Widget/My_Buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../Widget/mainWidget.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  static const String screenRoute = 'reg';
+class SignUpScreen extends StatefulWidget {
+  static const String screenRoute = 'SignUpScreen';
 
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
@@ -306,7 +308,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   try {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
-                    Navigator.pushNamed(context, 'SignInScreen');
+                    Navigator.pushNamed(context, LoginScreen.screenRoute);
                     setState(() {
                       showSpinner = false;
                     });
