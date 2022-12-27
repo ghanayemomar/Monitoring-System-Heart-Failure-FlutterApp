@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/HomePageScreen.dart';
-import 'package:oma/Screens/OrderTackingScreen.dart';
-import 'package:oma/Screens/Splash_Screen.dart';
-import 'package:oma/profile/prrofile_screen.dart';
-import 'package:oma/Screens/SignUpScreen.dart';
-import 'package:oma/Screens/LoginScreen.dart';
-import 'package:oma/Screens/Welcome.dart';
+import '../Screens/splash_screen.dart';
+import '../Screens/HomePageScreen.dart';
+import '../profile/prrofile_screen.dart';
+import '../Screens/SignUpScreen.dart';
+import '../Screens/LoginScreen.dart';
+import '../Screens/Welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'drawer/navigation_drawer.dart';
-import './Screens/OrderTackingScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,24 +22,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      routes: {
-        LoginScreen.screenRoute: (context) => LoginScreen(),
-        SignUpScreen.screenRoute: (context) => SignUpScreen(),
-        HomePageScreen.screenRoute: (context) => HomePageScreen(),
-        WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-        // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
-        "d": (context) => NavigationDrawer(),
-        "profile": (context) => ProfileScreen(),
-        "out": (context) => LoginScreen(),
-        "prof": (context) => ProfileScreen(),
-      },
-      home: OrderTrackingPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        routes: {
+          LoginScreen.screenRoute: (context) => LoginScreen(),
+          SignUpScreen.screenRoute: (context) => SignUpScreen(),
+          HomePageScreen.screenRoute: (context) => HomePageScreen(),
+          WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+          // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
+          "d": (context) => NavigationDrawer(),
+          "profile": (context) => ProfileScreen(),
+          "out": (context) => LoginScreen(),
+          "prof": (context) => ProfileScreen(),
+        },
+        home: SplashScreen());
   }
 }
-//ghanayem
