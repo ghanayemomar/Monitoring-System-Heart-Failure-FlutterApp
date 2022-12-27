@@ -78,7 +78,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, SimpleMapScreen.screenRoute);
+              // Navigator.pushNamed(context, SimpleMapScreen.screenRoute);
             },
             child: const Icon(
               Icons.map,
