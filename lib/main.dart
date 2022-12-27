@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         SignUpScreen.screenRoute: (context) => SignUpScreen(),
         HomePageScreen.screenRoute: (context) => HomePageScreen(),
         WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-        SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
+        // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
         "d": (context) => NavigationDrawer(),
         "profile": (context) => ProfileScreen(),
         "out": (context) => LoginScreen(),

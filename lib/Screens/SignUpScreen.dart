@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/HomePageScreen.dart';
+//import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/LoginScreen.dart';
 import '../Widget/My_Buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -127,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           email = value;
                           _btnActive2 =
                               (RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+')
-                                      .hasMatch(value!))
+                                      .hasMatch(value))
                                   ? true
                                   : false;
                         },
