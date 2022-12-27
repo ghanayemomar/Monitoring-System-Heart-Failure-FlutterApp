@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         "out": (context) => LoginScreen(),
         "prof": (context) => ProfileScreen(),
       },
-      home: SplashScreen(),
+      home: OrderTrackingPage(),
     );
   }
 }
