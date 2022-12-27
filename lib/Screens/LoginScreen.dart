@@ -17,13 +17,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _auth = FirebaseAuth.instance; //define var for firebase
+  final _auth = FirebaseAuth.instance; //1) define var for firebase
   late String email;
   late String password;
   bool showSpinner = false;
   bool _btnActive1 = false;
   bool _btnActive2 = false;
   final _formKey = GlobalKey<FormState>();
+
+  void _trySubmit() {
+    final isValid = _formKey.currentState!.validate();
+    if (isValid) {
+      _formKey.currentState!.save();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +69,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextFormField(
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Your Email';
+                          if (value == null || !value.contains('@')) {
+                            return 'Please Enter A Valid Email Address.';
                           }
                           return null;
                         },
@@ -109,14 +116,24 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 22),
+                      ////
+                      ////
+                      ////
+                      ////
+                      ////
+                      ////
+                      ////
+                      ///
                       TextFormField(
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Your Password';
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length < 9) {
+                            return 'Password Must Be At Least 9 Character Long.';
                           }
                           return null;
                         },
-                        obscureText: true,
+                        obscureText: true, //to secure text
                         onChanged: (value) {
                           password = value;
                           _btnActive2 = value.length >= 1 ? true : false;
@@ -177,8 +194,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.black,
                 title: 'Login',
                 onPressed: () async {
+                  FocusScope.of(context).unfocus();
                   setState(() {
-                    if (!_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {}
                     _btnActive1 && _btnActive2 == true
                         ? showSpinner = true
                         : () {};
