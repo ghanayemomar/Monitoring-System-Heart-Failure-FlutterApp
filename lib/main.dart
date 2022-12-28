@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/OrderTackingScreen.dart';
-import 'package:oma/Screens/Splash_Screen.dart';
+import 'package:oma/Screens/splash_screen.dart';
 import 'package:oma/profile/prrofile_screen.dart';
 import 'package:oma/Screens/SignUpScreen.dart';
 import 'package:oma/Screens/LoginScreen.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         "out": (context) => LoginScreen(),
         "prof": (context) => ProfileScreen(),
       },
-      home: OrderTrackingPage(),
+      home: SplashScreen(),
     );
   }
 }

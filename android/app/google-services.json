@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "695858581371",
-    "project_id": "seniorprojectdb-48b4d",
-    "storage_bucket": "seniorprojectdb-48b4d.appspot.com"
+    "project_number": "662752379182",
+    "project_id": "seniorproject-ac294",
+    "storage_bucket": "seniorproject-ac294.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:695858581371:android:ea5cb085905b57a295f7de",
+        "mobilesdk_app_id": "1:662752379182:android:f7f22ab4742dfa8f6ebabf",
         "android_client_info": {
           "package_name": "Senior.Project.Flutter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "695858581371-na0vtmmnu0a94sol46qme39cr1dghmdd.apps.googleusercontent.com",
+          "client_id": "662752379182-6e3rjfk81djfgbnq2v9ptpqhb7vufi5l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBG1ZMCo7fwT5OEcBC0mxONN2fc-3apEFs"
+          "current_key": "AIzaSyBJk2NYYz31W0cXwvRMj0W5UY5LDSjSWjU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "695858581371-na0vtmmnu0a94sol46qme39cr1dghmdd.apps.googleusercontent.com",
+              "client_id": "662752379182-6e3rjfk81djfgbnq2v9ptpqhb7vufi5l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

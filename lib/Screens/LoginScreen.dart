@@ -17,21 +17,29 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _auth = FirebaseAuth.instance; //1) define var for firebase
-  late String email;
-  late String password;
-  bool showSpinner = false;
-  bool _btnActive1 = false;
-  bool _btnActive2 = false;
-  final _formKey = GlobalKey<FormState>();
-
-  void _trySubmit() {
-    final isValid = _formKey.currentState!.validate();
-    if (isValid) {
-      _formKey.currentState!.save();
+  static Future<User?> loginUsingEmailPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print("No User Found for that email");
+      }
     }
+
+    return user;
   }
 
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,17 +76,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: _emailController,
                         validator: (value) {
-                          if (value == null || !value.contains('@')) {
-                            return 'Please Enter A Valid Email Address.';
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter Email';
+                          }
+                          if (!RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+')
+                              .hasMatch(value)) {
+                            return 'Enter a Valid email "example@gmail.com"';
                           }
                           return null;
                         },
                         keyboardType: TextInputType.emailAddress,
-                        onChanged: (value) {
-                          email = value;
-                          _btnActive1 = value.length >= 1 ? true : false;
-                        },
                         decoration: InputDecoration(
                           labelText: 'Enter Your Email',
                           prefixIcon: Icon(
@@ -116,28 +125,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 22),
-                      ////
-                      ////
-                      ////
-                      ////
-                      ////
-                      ////
-                      ////
-                      ///
                       TextFormField(
+                        controller: _passwordController,
                         validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.length < 9) {
-                            return 'Password Must Be At Least 9 Character Long.';
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter Your Password';
                           }
                           return null;
                         },
-                        obscureText: true, //to secure text
-                        onChanged: (value) {
-                          password = value;
-                          _btnActive2 = value.length >= 1 ? true : false;
-                        },
+                        obscureText: true,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.lock,
@@ -194,26 +190,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.black,
                 title: 'Login',
                 onPressed: () async {
-                  FocusScope.of(context).unfocus();
-                  setState(() {
-                    if (_formKey.currentState!.validate()) {}
-                    _btnActive1 && _btnActive2 == true
-                        ? showSpinner = true
-                        : () {};
-                  });
-                  try {
-                    final user = await _auth.signInWithEmailAndPassword(
-                        email: email, password: password);
-                    if (user != null) {
-                      Navigator.pushNamed(context, HomePageScreen.screenRoute);
-                      setState(() {
-                        showSpinner = false;
-                      });
-                    }
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == "user-not-found") {
-                      print("No User Found for that email");
-                    }
+                  if (_formKey.currentState!.validate()) {
+                    null;
+                  }
+                  //lets test the app
+                  User? user = await loginUsingEmailPassword(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      context: context);
+
+                  if (user != null) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: ((context) => HomePageScreen())));
+                    //lets make a new screen
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          duration: Duration(seconds: 2),
+                          content: Text(
+                            'User not Found',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          )),
+                    );
                   }
                 },
               )
@@ -224,4 +225,5 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-// _btnActive1 = value.length >= 1 ? true : false;
+
+ //Navigator.pushNamed(context, HomePageScreen.screenRoute);
