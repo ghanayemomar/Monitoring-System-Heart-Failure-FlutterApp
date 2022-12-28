@@ -38,7 +38,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
   void getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      'AIzaSyDJaRPutaZ-LJiIfyPSmMvvnmHvdWLMLhg',
+      'AIzaSyDJaRPutmMvvnmHvdWLMLhg',
       PointLatLng(sourceLocation.latitude, sourceLocation.longitude),
       PointLatLng(destination.latitude, destination.longitude),
     );
@@ -54,7 +54,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
 
   @override
   void initState() {
-    // getCurrentLocation();
+    getCurrentLocation();
     // getPolyPoints();
     super.initState();
   }
@@ -77,34 +77,35 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
         mapType: MapType.hybrid,
         // ignore: prefer_const_constructors
         initialCameraPosition: CameraPosition(
-          target: sourceLocation,
+          target:
+              LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
           zoom: 13.5,
         ),
-        // polylines: {
-        //   Polyline(
-        //     polylineId: const PolylineId("route"),
-        //     points: polylineCoordinates,d
-        //     color: Colors.blue,
-        //     width: 6,
-        //   )
-        // },
-        markers: {
-          // Marker(
-          //   // markerId: const MarkerId("currentLocation"),
-          //   // position: LatLng(
-          //   //   currentLocation!.latitude!,
-          //   //   currentLocation!.longitude!,
-          //   // ),
-          // ),
-          const Marker(
-            markerId: MarkerId("source"),
-            position: sourceLocation,
-          ),
-          // const Marker(
-          //   markerId: MarkerId("destination"),
-          //   position: destination,
-          // ),
+        polylines: {
+          Polyline(
+            polylineId: const PolylineId("route"),
+            points: polylineCoordinates,
+            color: Colors.blue,
+            width: 6,
+          )
         },
+        // markers: {
+        //   Marker(
+        //     markerId: const MarkerId("currentLocation"),
+        //     position: LatLng(
+        //       currentLocation!.latitude!,
+        //       currentLocation!.longitude!,
+        //     ),
+        //   ),
+        // const Marker(
+        //   markerId: MarkerId("source"),
+        //   position: sourceLocation,
+        // ),
+        // const Marker(
+        //   markerId: MarkerId("destination"),
+        //   position: destination,
+        // ),
+        // },
       ),
     );
   }

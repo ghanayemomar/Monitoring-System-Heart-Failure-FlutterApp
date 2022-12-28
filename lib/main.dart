@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/OrderTackingScreen.dart';
 import '../Screens/splash_screen.dart';
 import '../Screens/HomePageScreen.dart';
 import '../profile/prrofile_screen.dart';
@@ -7,6 +8,7 @@ import '../Screens/LoginScreen.dart';
 import '../Screens/Welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'drawer/navigation_drawer.dart';
+import '../Screens/OnBoardScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
           "out": (context) => LoginScreen(),
           "prof": (context) => ProfileScreen(),
         },
-        home: SplashScreen());
+        home: OnBoardScreen());
   }
 }
 //muhammed
