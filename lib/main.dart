@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: HomePageScreen(),
+      home: SplashScreen(),
       routes: {
         LoginScreen.screenRoute: (context) => LoginScreen(),
         SignUpScreen.screenRoute: (context) => SignUpScreen(),
