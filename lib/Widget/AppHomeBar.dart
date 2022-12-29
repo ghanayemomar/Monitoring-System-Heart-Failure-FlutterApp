@@ -5,7 +5,7 @@ class appHomeBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.deepPurple,
       padding: EdgeInsets.all(20),
       child: Row(
         children: [
@@ -13,46 +13,47 @@ class appHomeBar extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, 'd');
             },
-            child: Icon(
+            child: const Icon(
               Icons.sort,
               size: 30,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(
               left: 20,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 110),
+            padding: const EdgeInsets.only(left: 110),
             child: Image.asset(
               'images/lo1.png',
+              color: Colors.white,
               width: 50,
               height: 50,
             ),
           ),
-          Spacer(),
-          Badge(
-            badgeColor: Colors.red,
-            padding: EdgeInsets.all(7),
-            badgeContent: Text(
-              "",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "filepage");
-              },
-              child: Icon(
-                Icons.notification_add,
-                color: Colors.black,
-                size: 31,
-              ),
-            ),
-          ),
+          // Spacer(),
+          // Badge(
+          //   badgeColor: Colors.red,
+          //   padding: EdgeInsets.all(7),
+          //   badgeContent: Text(
+          //     "",
+          //     style: TextStyle(
+          //       color: Colors.white,
+          //     ),
+          //   ),
+          //   child: InkWell(
+          //     onTap: () {
+          //       Navigator.pushNamed(context, "filepage");
+          //     },
+          //     child: Icon(
+          //       Icons.notification_add,
+          //       color: Colors.black,
+          //       size: 31,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

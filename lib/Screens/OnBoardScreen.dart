@@ -73,12 +73,15 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               //////////////////////
               /////////////////////
               PageViewModel(
-                titleWidget: const Text(
-                  "Welcome ...",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                titleWidget: Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: const Text(
+                    "Welcome ...",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 bodyWidget: const Text(
                   "Welcome Hello how are you loaction emrgency hello what whrea oajios ",

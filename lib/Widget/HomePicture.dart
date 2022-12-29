@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Widget/heartAnimation.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -8,14 +9,8 @@ class HomeView extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 1),
-            child: Image.asset(
-              'images/lo2.png',
-              height: 200,
-              width: 390,
-              fit: BoxFit.cover,
-            ),
-          ),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 1),
+              child: heartAnimationIcon()),
         ],
       ),
     );

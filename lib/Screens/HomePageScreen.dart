@@ -1,8 +1,9 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-//import 'package:oma/Screens/Simple_Map.dart';
-import '../Widget/HomePicture.dart';
+// import '../Widget/HomePicture.dart';
 import '../Widget/AppHomeBar.dart';
+// import '../Widget/heartAnimation.dart';
+import '../Widget/LineChartSample.dart';
 
 class HomePageScreen extends StatefulWidget {
   static const String screenRoute = 'HomePageScreen';
@@ -23,7 +24,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
       body: ListView(
         children: [
           appHomeBar(),
-          HomeView(),
+          Container(child: Text("Hello")),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
             child: const Text(
@@ -55,39 +56,39 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        onTap: (index) {},
-        height: 70,
-        color: Colors.black,
-        items: [
-          const Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.white,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, 'prof');
-            },
-            child: const Icon(
-              Icons.person,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              // Navigator.pushNamed(context, SimpleMapScreen.screenRoute);
-            },
-            child: const Icon(
-              Icons.map,
-              size: 30,
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
+      // bottomNavigationBar: CurvedNavigationBar(
+      //   backgroundColor: Colors.transparent,
+      //   onTap: (index) {},
+      //   height: 70,
+      //   color: Colors.black,
+      //   items: [
+      //     const Icon(
+      //       Icons.home,
+      //       size: 30,
+      //       color: Colors.white,
+      //     ),
+      //     GestureDetector(
+      //       onTap: () {
+      //         Navigator.pushNamed(context, 'prof');
+      //       },
+      //       child: const Icon(
+      //         Icons.person,
+      //         size: 30,
+      //         color: Colors.white,
+      //       ),
+      //     ),
+      //     GestureDetector(
+      //       onTap: () {
+      //         // Navigator.pushNamed(context, SimpleMapScreen.screenRoute);
+      //       },
+      //       child: const Icon(
+      //         Icons.map,
+      //         size: 30,
+      //         color: Colors.white,
+      //       ),
+      //     )
+      //   ],
+      // ),
     );
   }
 
@@ -108,11 +109,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-              // topLeft: Radius.circular(14),
-              // topRight: Radius.circular(14),
-              // bottomLeft: Radius.circular(14),
-              // bottomRight: Radius.circular(14),
-              ),
+            topLeft: Radius.circular(14),
+            topRight: Radius.circular(14),
+            bottomLeft: Radius.circular(14),
+            bottomRight: Radius.circular(14),
+          ),
           boxShadow: [BoxShadow()],
         ),
         child: Column(

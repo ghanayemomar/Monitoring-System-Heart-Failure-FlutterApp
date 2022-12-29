@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/Welcome.dart';
-
+import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Widget/ecgWidget.dart';
+import '../UserProfile/profile_page.dart';
 import 'drawer_item.dart';
-import 'people.dart';
+import './people.dart';
+import '../Screens/LoginScreen.dart';
+import '../Widget/heartAnimation.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -11,7 +16,7 @@ class NavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Colors.white,
+        color: Colors.deepPurple,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(24.0, 80, 24, 0),
           child: Column(
@@ -23,8 +28,17 @@ class NavigationDrawer extends StatelessWidget {
               const Divider(
                 thickness: 2,
                 height: 10,
-                color: Colors.black,
+                color: Colors.white,
               ),
+              const SizedBox(
+                height: 30,
+              ),
+              DrawerItem(
+                  name: 'Dashboard',
+                  icon: Icons.dashboard,
+                  onPressed: () {
+                    Navigator.pushNamed(context, HomePageScreen.screenRoute);
+                  }),
               const SizedBox(
                 height: 30,
               ),
@@ -32,38 +46,35 @@ class NavigationDrawer extends StatelessWidget {
                   name: 'Profile',
                   icon: Icons.person,
                   onPressed: () {
-                    Navigator.pushNamed(context, 'profile');
+                    Navigator.pushNamed(context, ProfilePage.routeName);
                   }),
-              const SizedBox(
-                height: 30,
-              ),
-              DrawerItem(
-                  name: 'Emergency',
-                  icon: Icons.emergency_share,
-                  onPressed: () => onItemPressed(context, index: 3)),
               const SizedBox(
                 height: 25,
               ),
               const Divider(
                 thickness: 2,
                 height: 10,
-                color: Colors.black,
+                color: Colors.white,
               ),
               const SizedBox(
                 height: 30,
               ),
               DrawerItem(
-                  name: 'Location',
-                  icon: Icons.location_on,
-                  onPressed: () => onItemPressed(context, index: 4)),
+                  name: 'Terms And Services',
+                  icon: Icons.draw_rounded,
+                  onPressed: () => {}),
               const SizedBox(
                 height: 30,
               ),
               DrawerItem(
-                  name: 'LogOut',
+                  name: 'Logout',
                   icon: Icons.logout,
                   onPressed: () {
-                    Navigator.pushNamed(context, WelcomeScreen.screenRoute);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: ((context) => LoginScreen()),
+                      ),
+                    );
                   }),
             ],
           ),
@@ -72,44 +83,21 @@ class NavigationDrawer extends StatelessWidget {
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index}) {
-    Navigator.pop(context);
+  // void onItemPressed(BuildContext context, {required int index}) {
+  //   Navigator.pop(context);
 
-    switch (index) {
-      case 0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const People()));
-        break;
-    }
-  }
+  //   // switch (index) {
+  //   //   case 0:
+  //   //     Navigator.push(
+  //   //         context, MaterialPageRoute(builder: (context) => const People()));
+  //   //     break;
+  //   // }
+  // }
 
   Widget headerWidget() {
-    const url =
-        'https://mpng.subpng.com/20180406/bte/kisspng-medicine-staff-of-hermes-symbol-clip-art-hermes-5ac75ec4ee7465.7782658815230153649767.jpg';
     return Row(
       children: [
-        const CircleAvatar(
-          radius: 40,
-          backgroundImage: NetworkImage(url),
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Safe Health Care',
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 10,
-            ),
-            Text('Welcome To Our Application ..',
-                style: TextStyle(fontSize: 14, color: Colors.black38))
-          ],
-        )
+        Container(padding: EdgeInsets.only(left: 80), child: Text("Hello"))
       ],
     );
   }
