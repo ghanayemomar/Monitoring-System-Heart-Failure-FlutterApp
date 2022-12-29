@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Screens/Welcome.dart';
 import 'package:flutter/foundation.dart';
 
 class OnBoardScreen extends StatefulWidget {

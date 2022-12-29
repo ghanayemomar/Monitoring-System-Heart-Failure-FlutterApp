@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'user.dart';
-import './appbar_widget.dart';
-import './numbers_widget.dart';
-import 'image_widget.dart';
+import 'Appbar_Widget.dart';
+import 'Numbers_Widget.dart';
+import 'Image_Widget.dart';
 import 'user_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
-  static const routeName = 'ProfilePage';
+  static const screenRoute = 'ProfilePage';
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
