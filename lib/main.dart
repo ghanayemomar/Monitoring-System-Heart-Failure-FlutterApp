@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/OrderTackingScreen.dart';
-import 'package:oma/Screens/splash_screen.dart';
-import 'package:oma/profile/prrofile_screen.dart';
-import 'package:oma/Screens/SignUpScreen.dart';
-import 'package:oma/Screens/LoginScreen.dart';
-import 'package:oma/Screens/Welcome.dart';
+import 'package:oma/Widget/ecgWidget.dart';
+import 'package:oma/Widget/heartAnimation.dart';
+import '../Screens/splash_screen.dart';
+import '../Screens/HomePageScreen.dart';
+import '../profile/prrofile_screen.dart';
+import '../Screens/SignUpScreen.dart';
+import '../Screens/LoginScreen.dart';
+import '../Screens/Welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'drawer/navigation_drawer.dart';
-import './Screens/OrderTackingScreen.dart';
+import '../Screens/OnBoardScreen.dart';
+import 'UserProfile/profile_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,22 +29,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.deepPurple,
       ),
+      home: HomePageScreen(),
       routes: {
         LoginScreen.screenRoute: (context) => LoginScreen(),
         SignUpScreen.screenRoute: (context) => SignUpScreen(),
         HomePageScreen.screenRoute: (context) => HomePageScreen(),
         WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
         // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
+        ProfilePage.routeName: (context) => ProfilePage(),
+        // NavigationDrawer.routeName:((context) => ProfilePage())
         "d": (context) => NavigationDrawer(),
-        "profile": (context) => ProfileScreen(),
         "out": (context) => LoginScreen(),
-        "prof": (context) => ProfileScreen(),
       },
-      home: SplashScreen(),
     );
   }
 }
