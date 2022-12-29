@@ -10,6 +10,7 @@ import '../Screens/LoginScreen.dart';
 import '../Widget/heartAnimation.dart';
 
 class NavigationDrawer extends StatelessWidget {
+  static const routeName = 'NavigationDrawer';
   const NavigationDrawer({Key? key}) : super(key: key);
 
   @override

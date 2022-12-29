@@ -28,22 +28,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-        ),
-        routes: {
-          LoginScreen.screenRoute: (context) => LoginScreen(),
-          SignUpScreen.screenRoute: (context) => SignUpScreen(),
-          HomePageScreen.screenRoute: (context) => HomePageScreen(),
-          WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-          // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
-          ProfilePage.routeName: (context) => ProfilePage(),
-          "d": (context) => NavigationDrawer(),
-          "out": (context) => LoginScreen(),
-        },
-        home: HomePageScreen());
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      home: HomePageScreen(),
+      routes: {
+        LoginScreen.screenRoute: (context) => LoginScreen(),
+        SignUpScreen.screenRoute: (context) => SignUpScreen(),
+        HomePageScreen.screenRoute: (context) => HomePageScreen(),
+        WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+        // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
+        ProfilePage.routeName: (context) => ProfilePage(),
+        // NavigationDrawer.routeName:((context) => ProfilePage())
+        "d": (context) => NavigationDrawer(),
+        "out": (context) => LoginScreen(),
+      },
+    );
   }
 }
 //muhammed
