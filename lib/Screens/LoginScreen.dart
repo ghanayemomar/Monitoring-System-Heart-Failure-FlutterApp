@@ -277,6 +277,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           context: context);
 
                       if (user != null) {
+                        //print(_emailController.text);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: ((context) => HomePageScreen())));
                         //lets make a new screen

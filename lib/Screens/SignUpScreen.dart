@@ -666,7 +666,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               "address": _addressController.text.trim(),
                               "Type": _Type,
                               "Gender": _Gender,
-                            });
+                            }).then((vlaue) => {
+                                      //print(_emailController.text.trim())
+                                    });
                             if (_Type == "Driver") {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
