@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
-import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Screens/Welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
 import './MedicalHistoryScreen.dart';
 
@@ -13,7 +13,6 @@ import 'package:oma/main.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../Widget/mainWidget.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String screenRoute = 'SignUpScreen';

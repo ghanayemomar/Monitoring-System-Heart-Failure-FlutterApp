@@ -1,9 +1,7 @@
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-// import '../Widget/HomePicture.dart';
-import '../Widget/AppHomeBar.dart';
-// import '../Widget/heartAnimation.dart';
-import '../Widget/LineChartSample.dart';
+import 'package:oma/drawer/navigation_drawer.dart';
+import '../Widget/AnimatedWidget/LineChartSample.dart';
 import '../Widget/InkWellCard.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -32,7 +30,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
             height: 50,
           ),
           leading: IconButton(
-            onPressed: () => Navigator.pushNamed(context, 'd'),
+            onPressed: () =>
+                Navigator.pushNamed(context, NavigationDrawer.screenRoute),
             icon: Icon(Icons.sort),
           ),
         ),

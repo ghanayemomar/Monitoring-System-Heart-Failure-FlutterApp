@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
-import 'package:oma/Screens/Welcome.dart';
-import 'package:oma/Screens/welcome.dart';
-import 'package:oma/Widget/ecgWidget.dart';
 import '../UserProfile/profile_page.dart';
 import 'drawer_item.dart';
-import './people.dart';
 import '../Screens/LoginScreen.dart';
-import '../Widget/heartAnimation.dart';
 
 class NavigationDrawer extends StatelessWidget {
-  static const routeName = 'NavigationDrawer';
+  static const screenRoute = 'NavigationDrawer';
   const NavigationDrawer({Key? key}) : super(key: key);
 
   @override
@@ -47,7 +42,7 @@ class NavigationDrawer extends StatelessWidget {
                   name: 'Profile',
                   icon: Icons.person,
                   onPressed: () {
-                    Navigator.pushNamed(context, ProfilePage.routeName);
+                    Navigator.pushNamed(context, ProfilePage.screenRoute);
                   }),
               const SizedBox(
                 height: 25,
@@ -83,17 +78,6 @@ class NavigationDrawer extends StatelessWidget {
       ),
     );
   }
-
-  // void onItemPressed(BuildContext context, {required int index}) {
-  //   Navigator.pop(context);
-
-  //   // switch (index) {
-  //   //   case 0:
-  //   //     Navigator.push(
-  //   //         context, MaterialPageRoute(builder: (context) => const People()));
-  //   //     break;
-  //   // }
-  // }
 
   Widget headerWidget() {
     return Row(
