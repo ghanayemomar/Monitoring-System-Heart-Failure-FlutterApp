@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/MedicalHistoryScreen.dart';
-import 'package:oma/Screens/OrderTackingScreen.dart';
-import 'package:oma/Widget/ecgWidget.dart';
-import 'package:oma/Widget/heartAnimation.dart';
-import '../Screens/splash_screen.dart';
+import 'package:oma/Screens/OnBoardScreen.dart';
 import '../Screens/HomePageScreen.dart';
-import '../profile/prrofile_screen.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
 import '../Screens/Welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'drawer/navigation_drawer.dart';
-import '../Screens/OnBoardScreen.dart';
-import 'UserProfile/profile_page.dart';
+import 'Drawer/navigation_drawer.dart';
+import 'UserProfile/Profile_Page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,17 +26,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: SplashScreen(),
+      home: HomePageScreen(),
       routes: {
         LoginScreen.screenRoute: (context) => LoginScreen(),
         SignUpScreen.screenRoute: (context) => SignUpScreen(),
         HomePageScreen.screenRoute: (context) => HomePageScreen(),
         WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-        // SimpleMapScreen.screenRoute: (context) => SimpleMapScreen(),
-        ProfilePage.routeName: (context) => ProfilePage(),
-        // NavigationDrawer.routeName:((context) => ProfilePage())
-        "d": (context) => NavigationDrawer(),
-        "out": (context) => LoginScreen(),
+        ProfilePage.screenRoute: (context) => ProfilePage(),
+        NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
       },
     );
   }

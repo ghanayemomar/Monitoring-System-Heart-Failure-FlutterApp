@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Widget/heartAnimation.dart';
+import '../Widget/AnimatedWidget/heartAnimation.dart';
 
 class HomeView extends StatelessWidget {
   @override

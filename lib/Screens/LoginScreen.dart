@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/SignUpScreen.dart';
 import 'package:oma/Screens/Welcome.dart';
-import 'package:oma/Utils/color_utils.dart';
+import 'package:oma/Utils/Color_utils.dart';
 import '../Widget/My_Buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';

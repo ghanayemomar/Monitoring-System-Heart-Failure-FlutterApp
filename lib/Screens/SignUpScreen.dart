@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
-import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Screens/Welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
 
 import 'package:oma/main.dart';
