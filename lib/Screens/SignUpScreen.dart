@@ -7,6 +7,7 @@ import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
+import './MedicalHistoryScreen.dart';
 
 import 'package:oma/main.dart';
 
@@ -62,32 +63,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     _focusNode1.addListener(() {
-      if (!_focusNode1.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode2.addListener(() {
-      if (!_focusNode2.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode3.addListener(() {
-      if (!_focusNode3.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode4.addListener(() {
-      if (!_focusNode4.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode5.addListener(() {
-      if (!_focusNode5.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode6.addListener(() {
-      if (!_focusNode6.hasFocus) {
+      if (!_focusNode1.hasFocus &&
+          !_focusNode2.hasFocus &&
+          !_focusNode3.hasFocus &&
+          !_focusNode4.hasFocus &&
+          !_focusNode5.hasFocus &&
+          !_focusNode6.hasFocus) {
         FocusScope.of(context).unfocus();
       }
     });
@@ -108,7 +89,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
+            hexStringToColor("A9A9A9"),
+            hexStringToColor("4B0082"),
             hexStringToColor("9546C4"),
             hexStringToColor("5E61F4"),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
@@ -670,10 +652,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       //print(_emailController.text.trim())
                                     });
                             if (_Type == "Driver") {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: ((context) =>
-                                          MedicalHistoryPage())));
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                      builder: ((context) => MedicalHistoryPage(
+                                            email: _emailController.text.trim(),
+                                          ))));
                             } else if (_Type == "Family") {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
