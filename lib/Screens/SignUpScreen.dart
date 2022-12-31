@@ -2,13 +2,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
-import 'package:oma/Screens/Welcome.dart';
+import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
-import './MedicalHistoryScreen.dart';
-
 import 'package:oma/main.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,6 +51,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool showSpinner = false;
   String _Gender = 'Male';
+  String _image =
+      'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80';
+
   String _Type = '';
   bool _family = false;
   bool _driver = false;
@@ -647,6 +646,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               "address": _addressController.text.trim(),
                               "Type": _Type,
                               "Gender": _Gender,
+                              "image": _image,
                             }).then((vlaue) => {
                                       //print(_emailController.text.trim())
                                     });
@@ -659,7 +659,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             } else if (_Type == "Family") {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: ((context) => MyApp())));
+                                      builder: ((context) => WelcomeScreen())));
                             }
 
                             //lets make a new screen

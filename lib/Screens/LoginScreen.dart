@@ -46,12 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _focusNode1.addListener(() {
-      if (!_focusNode1.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode2.addListener(() {
-      if (!_focusNode2.hasFocus) {
+      if (!_focusNode1.hasFocus && !_focusNode2.hasFocus) {
         FocusScope.of(context).unfocus();
       }
     });

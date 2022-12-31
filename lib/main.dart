@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/OnBoardScreen.dart';
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: HomePageScreen(),
+      home: NavigationDrawer(),
       routes: {
         LoginScreen.screenRoute: (context) => LoginScreen(),
         SignUpScreen.screenRoute: (context) => SignUpScreen(),

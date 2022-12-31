@@ -5,39 +5,88 @@ import 'Appbar_Widget.dart';
 import 'Numbers_Widget.dart';
 import 'Image_Widget.dart';
 import 'user_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
+  String email = "muhammed@gmail.com";
+  //ProfilePage({required this.email});
   static const screenRoute = 'ProfilePage';
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
-// void TextStyle()
 
 class _ProfilePageState extends State<ProfilePage> {
+  String fname = '';
+  String lname = '';
+  String add = '';
+  String name = '';
+  String image =
+      'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80';
+
+  String last_name = '';
+  String first_name = '';
+  String age = '';
+  String address = '';
+  String Type = '';
+  String Gender = '';
+  //String email = "muhammed@gmail.com";
+  String phone = '';
+
   @override
   Widget build(BuildContext context) {
     final user = UserPreferences.myUser;
 
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Scaffold(
-        backgroundColor: Colors.deepPurpleAccent,
-        body: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            imageWidget(
-              imagePath: user.imagePath,
-              onClicked: () async {},
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection("Users")
+            .doc(widget.email)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData)
+            return Scaffold(
+              backgroundColor: Colors.deepPurpleAccent,
+              body: Center(
+                  child: Text(
+                'Profile...',
+                style: TextStyle(fontSize: 22),
+              )),
+            );
+          fname = (snapshot.data!['first_name']);
+          lname = snapshot.data!['last_name'];
+          add = snapshot.data!['address'];
+          first_name = fname[0].toUpperCase() + fname.substring(1);
+          last_name = lname[0].toUpperCase() + lname.substring(1);
+          name = first_name + ' ' + last_name;
+          age = snapshot.data!['age'];
+          address = add[0].toUpperCase() + add.substring(1);
+          Type = snapshot.data!['Type'];
+          Gender = snapshot.data!['Gender'];
+          // email = snapshot.data!['email'];
+          phone = snapshot.data!['phone'];
+
+          return Scaffold(
+            backgroundColor: Colors.deepPurpleAccent,
+            body: ListView(
+              physics: BouncingScrollPhysics(),
+              children: [
+                imageWidget(
+                  imagePath: image,
+                  onClicked: () async {},
+                ),
+                const SizedBox(height: 24),
+                buildName(user),
+                const SizedBox(height: 24),
+                const SizedBox(height: 24),
+                NumbersWidget(),
+                const SizedBox(height: 48),
+                buildAbout(user),
+              ],
             ),
-            const SizedBox(height: 24),
-            buildName(user),
-            const SizedBox(height: 24),
-            const SizedBox(height: 24),
-            NumbersWidget(),
-            const SizedBox(height: 48),
-            buildAbout(user),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -45,14 +94,14 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildName(User user) => Column(
         children: [
           Text(
-            user.name,
+            name,
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 16),
           Text(
-            user.email,
-            style: TextStyle(color: Colors.white),
+            widget.email,
+            style: TextStyle(color: Colors.white, fontSize: 20),
           )
         ],
       );
@@ -83,12 +132,13 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                             "First Name: ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                           Text(
-                            user.First_Name,
+                            first_name,
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -111,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 color: Colors.white),
                           ),
                           Text(
-                            user.Last_Name,
+                            last_name,
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -134,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 color: Colors.white),
                           ),
                           Text(
-                            user.Address,
+                            address,
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -157,7 +207,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 color: Colors.white),
                           ),
                           Text(
-                            user.Phone_Number,
+                            phone,
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
