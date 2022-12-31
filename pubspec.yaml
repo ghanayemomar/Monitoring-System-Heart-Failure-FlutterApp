@@ -53,6 +53,7 @@ dependencies:
   fl_chart: ^0.55.2
   # upertino_icons: ^1.0.2
   animated_icon: ^0.0.4
+  flare_flutter: ^3.0.2
 
 
 

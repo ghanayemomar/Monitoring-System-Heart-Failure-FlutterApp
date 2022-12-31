@@ -14,7 +14,9 @@ class NumbersWidget extends StatelessWidget {
       );
   Widget buildDivider() => Container(
         height: 24,
-        child: VerticalDivider(),
+        child: VerticalDivider(
+          color: Colors.white,
+        ),
       );
 
   Widget buildButton(BuildContext context, String value, String text) =>

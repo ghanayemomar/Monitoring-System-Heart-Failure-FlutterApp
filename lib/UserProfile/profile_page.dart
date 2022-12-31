@@ -58,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
       );
 
   Widget buildAbout(User user) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
+        padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -76,11 +76,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.boy_rounded,
+                          const Icon(
+                            Icons.abc,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "First Name: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -89,6 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.First_Name,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -99,11 +100,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.boy_rounded,
+                          const Icon(
+                            Icons.abc,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Last Name: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -112,6 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.Last_Name,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -122,11 +124,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.location_on,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Address: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -135,6 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.Address,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -145,11 +148,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.numbers_rounded,
+                          const Icon(
+                            Icons.phone,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Phone Number: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -158,6 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.Phone_Number,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),

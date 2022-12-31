@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/OnBoardScreen.dart';
+import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Widget/testingWidget/welcome_screen.dart';
+
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.screenRoute: (context) => LoginScreen(),
         SignUpScreen.screenRoute: (context) => SignUpScreen(),
         HomePageScreen.screenRoute: (context) => HomePageScreen(),
-        WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+        // WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
         ProfilePage.screenRoute: (context) => ProfilePage(),
         NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
       },

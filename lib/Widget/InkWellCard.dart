@@ -2,24 +2,15 @@
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:flutter/material.dart';
 
-// class InkWellCard extends StatefulWidget {
-//   // const InkWellCard({super.key});
-
-//   @override
-//   State<InkWellCard> createState() => _InkWellCardState();
-//   final String title;
+// class InkWellCard extends StatelessWidget {
 //   final String imageUrl;
-//   const InkWellCard({
-//     required this.title,
-//     required this.imageUrl,
-//   });
-// }
-
-// class _InkWellCardState extends State<InkWellCard> {
+//   final String title;
+//   final Function() onPress;
+//   final IconData icon;
 //   @override
 //   Widget build(BuildContext context) {
 //     return InkWell(
-//       onTap: null,
+//       onTap: onPress,
 //       child: Card(
 //         shape: RoundedRectangleBorder(
 //           borderRadius: BorderRadius.circular(15),
@@ -37,7 +28,7 @@
 //                       topLeft: Radius.circular(15),
 //                       topRight: Radius.circular(15)),
 //                   child: Image.asset(
-//                     'images/locationservices.png',
+//                     imageUrl,
 //                     color: Colors.white,
 //                     height: 250,
 //                     width: double.infinity,
@@ -52,14 +43,14 @@
 //                   Row(
 //                     // ignore: prefer_const_literals_to_create_immutables
 //                     children: <Widget>[
-//                       const Icon(
-//                         Icons.location_on,
+//                       Icon(
+//                         icon,
 //                         color: Colors.white,
+//                         size: 30,
 //                       ),
 //                       // ignore: prefer_const_constructors
 //                       SizedBox(width: 6),
-//                       const Text('title',
-//                           style: TextStyle(color: Colors.white)),
+//                       Text(title, style: TextStyle(color: Colors.white)),
 //                     ],
 //                   )
 //                 ],
@@ -70,4 +61,10 @@
 //       ),
 //     );
 //   }
+
+//   const InkWellCard(
+//       {required this.imageUrl,
+//       required this.title,
+//       required this.onPress,
+//       required this.icon});
 // }
