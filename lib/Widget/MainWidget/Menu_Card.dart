@@ -22,16 +22,20 @@ class MenuCard extends StatelessWidget {
           Image.asset(
             imageUrl,
             width: 135,
-            height: 135,
+            height: 100,
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
-          Text(
-            title,
-            style: TextStyle(
-              color: mTitleTextColor,
-              fontWeight: FontWeight.w500,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: mTitleTextColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           )
         ],

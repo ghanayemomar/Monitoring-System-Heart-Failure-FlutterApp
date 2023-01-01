@@ -1,8 +1,11 @@
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oma/Screens/header.dart';
+import 'package:oma/Screens/welcome.dart';
 import 'package:oma/UserProfile/profile_page.dart';
-import '../Widget/MainWidget/MainWidget.dart';
+import 'package:oma/Widget/MainWidget/Welcome_Screen.dart';
+import '../Widget/MainWidget2/MainWidget.dart';
 import 'package:oma/drawer/navigation_drawer.dart';
 import '../Widget/AnimatedWidget/LineChartSample.dart';
 import '../Widget/InkWellCard.dart';
@@ -22,30 +25,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        backgroundColor: Colors.deepPurple,
-        appBar: AppBar(
-          centerTitle: true,
-          title: Image.asset(
-            'images/lo1.png',
-            color: Colors.white,
-            width: 50,
-            height: 50,
-          ),
-          leading: IconButton(
-            onPressed: () =>
-                Navigator.pushNamed(context, NavigationDrawer.screenRoute),
-            icon: Icon(Icons.sort),
-          ),
-        ),
-        body: ListView(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            const MainWidget(),
-            // getExpanded('care.png', 'mainText', 'SeText'),
-            // getExpanded('care.png', 'mainText', 'SeText'),
-          ],
-        )
+    return Scaffold(body: WelcomeScreenTesting()
 
         // bottomNavigationBar: CurvedNavigationBar(
         //   backgroundColor: Colors.transparent,

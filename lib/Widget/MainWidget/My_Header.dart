@@ -11,7 +11,7 @@ class MyHeader extends StatelessWidget {
     required this.child,
     Key? key,
   }) : super(key: key);
-
+//  SvgPicture.asset('images/splash_bg.svg'),
   @override
   Widget build(BuildContext context) {
     return ClipPath(

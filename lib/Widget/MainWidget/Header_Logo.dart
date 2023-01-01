@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Widget/AnimatedWidget/heartAnimation.dart';
 import './constant.dart';
 
 class HeaderLogo extends StatelessWidget {
@@ -13,16 +14,12 @@ class HeaderLogo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Image.asset(
-            'images/care.png',
-            width: 36,
-            height: 36,
-          ),
-          SizedBox(
+          heartAnimationIcon(),
+          const SizedBox(
             width: 12,
           ),
-          Text(
-            'Medical',
+          const Text(
+            'Safe Drive',
             style: TextStyle(
                 fontSize: 38,
                 color: mTitleTextColor,

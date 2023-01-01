@@ -48,12 +48,14 @@ dependencies:
   location: ^4.4.0
   flutter_polyline_points: ^1.0.0
   firebase_database: ^10.0.8
-
   introduction_screen: ^2.1.0
   fl_chart: ^0.55.2
-  # upertino_icons: ^1.0.2
   animated_icon: ^0.0.4
   flare_flutter: ^3.0.2
+  flutter_sms: ^2.3.3
+  # flutter_ecg_stream: ^0.0.1
+
+
 
 
 

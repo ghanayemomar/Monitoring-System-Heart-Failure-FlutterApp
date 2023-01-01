@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/welcome.dart';
-import 'package:oma/Widget/testingWidget/welcome_screen.dart';
+import 'package:oma/Screens/MedicalProfileScreen.dart';
+import 'package:oma/Widget/MainWidget/Welcome_Screen.dart';
 
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
         // WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
         ProfilePage.screenRoute: (context) => ProfilePage(),
         NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
+        MedicalProfileScreen.screenRoute: ((context) => MedicalProfileScreen())
       },
     );
   }

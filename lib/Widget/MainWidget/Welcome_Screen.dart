@@ -1,22 +1,31 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-// import 'package:flutter_medical/screen/reserve/reserve_screen.dart';
-import './header_logo.dart';
-import './menu_card.dart';
-import './my_header.dart';
+import '../../Screens/MedicalProfileScreen.dart';
+import '../AnimatedWidget/AnimatedIconDrawer.dart';
+import 'Header_Logo.dart';
+import 'Menu_Card.dart';
+import 'My_Header.dart';
 import './constant.dart';
 
-class WelcomeScreenTesting extends StatelessWidget {
+class WelcomeScreenTesting extends StatefulWidget {
+  @override
+  State<WelcomeScreenTesting> createState() => _WelcomeScreenTestingState();
+}
+
+class _WelcomeScreenTestingState extends State<WelcomeScreenTesting> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         MyHeader(
           height: 333,
-          imageUrl: 'images/abc.png',
+          imageUrl: 'images/test.jpg',
           child: Column(
+            // ignore: prefer_const_literals_to_create_immutables
             children: <Widget>[
               HeaderLogo(),
-              Text(
+              const Text(
                 'Welcome',
                 style: TextStyle(
                   fontSize: 28,
@@ -24,11 +33,11 @@ class WelcomeScreenTesting extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Text(
-                'Lorem ipsum dolor sit amet,\n consectetuer adipiscing elit',
+                'Hello Omar Ghanayem\nEnjoy Your Drive',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -71,11 +80,7 @@ class WelcomeScreenTesting extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Icon(
-                        Icons.menu,
-                        color: mSecondBackgroundColor,
-                        size: 36,
-                      ),
+                      animayedIconDrawer(),
                     ],
                   ),
                 ),
@@ -86,12 +91,12 @@ class WelcomeScreenTesting extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     MenuCard(
-                        imageUrl: 'images/care.png',
-                        title: 'General Practice',
+                        imageUrl: 'images/7492103.png',
+                        title: 'Location Services',
                         press: () {}),
                     MenuCard(
-                      imageUrl: 'images/care.png',
-                      title: 'Specialist',
+                      imageUrl: 'images/3649810.png',
+                      title: 'Emergency ',
                       press: () {},
                     ),
                   ],
@@ -103,14 +108,17 @@ class WelcomeScreenTesting extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     MenuCard(
-                      imageUrl: 'images/care.png',
-                      title: 'Sexual Health',
+                      imageUrl: 'images/3195462.png',
+                      title: 'Health Monitoring',
                       press: () {},
                     ),
                     MenuCard(
-                      imageUrl: 'images/care.png',
-                      title: 'Immunisation',
-                      press: () {},
+                      imageUrl: 'images/4138927.png',
+                      title: 'Medical History',
+                      press: () {
+                        Navigator.pushNamed(
+                            context, MedicalProfileScreen.screenRoute);
+                      },
                     ),
                   ],
                 ),
