@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
+import 'package:oma/Screens/Token.dart';
 // import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
@@ -26,9 +27,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _LastNameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _TokenFamilyController = TextEditingController();
+
   final TextEditingController _TokenDriverController = TextEditingController();
-  final TextEditingController _EmailForDriver = TextEditingController();
+
   final FocusNode _focusNode1 = FocusNode();
   final FocusNode _focusNode2 = FocusNode();
   final FocusNode _focusNode3 = FocusNode();
@@ -485,67 +486,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.start,
                                       children: [
                                         Checkbox(
                                           value: _family,
                                           onChanged: ((value) {
                                             setState(() {
+                                              _focusNode1.unfocus();
+                                              _focusNode2.unfocus();
+                                              _focusNode3.unfocus();
+                                              _focusNode4.unfocus();
+                                              _focusNode5.unfocus();
+                                              _focusNode6.unfocus();
+                                              _focusNode7.unfocus();
+                                              _focusNode8.unfocus();
+                                              _focusNode9.unfocus();
                                               _family = value!;
                                               _driver = false;
                                               _emailKey = true;
                                             });
                                           }),
                                         ),
-                                        // SizedBox(
-                                        //   width: 5,
-                                        // ),
+                                        SizedBox(
+                                          width: 25,
+                                        ),
                                         Text(
                                           'Family',
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.white),
                                         ),
-                                        SizedBox(
-                                          width: 40,
-                                        ),
-                                        SizedBox(
-                                          width: 160,
-                                          height: 40,
-                                          child: Visibility(
-                                            visible: _family,
-                                            child: TextFormField(
-                                              controller:
-                                                  _TokenFamilyController,
-                                              focusNode: _focusNode7,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18),
-                                              decoration: const InputDecoration(
-                                                suffixIcon: Tooltip(
-                                                  textStyle: TextStyle(
-                                                      color: Colors.black,
-                                                      //fontWeight: FontWeight.bold,
-                                                      fontSize: 18),
-                                                  message:
-                                                      'Token number:\nTo accsses the\ndriver information',
-                                                  child: Icon(
-                                                    Icons.info,
-                                                    color: Colors.redAccent,
-                                                    size: 30,
-                                                  ),
-                                                  waitDuration:
-                                                      Duration(seconds: 7),
-                                                ),
-                                                border: OutlineInputBorder(),
-                                                labelStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18),
-                                                labelText: 'Token',
-                                              ),
-                                            ),
-                                          ),
-                                        )
                                       ],
                                     ),
                                   ],
@@ -561,6 +531,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         value: _driver,
                                         onChanged: ((value) {
                                           setState(() {
+                                            _focusNode1.unfocus();
+                                            _focusNode2.unfocus();
+                                            _focusNode3.unfocus();
+                                            _focusNode4.unfocus();
+                                            _focusNode5.unfocus();
+                                            _focusNode6.unfocus();
+                                            _focusNode7.unfocus();
+                                            _focusNode8.unfocus();
+                                            _focusNode9.unfocus();
                                             _driver = value!;
                                             _family = false;
                                             _emailKey = false;
@@ -614,47 +593,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     )
                                   ],
                                 ),
-                                ////Email Driver ///////////////////////////////////////////////////////
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 380,
-                                      height: 40,
-                                      child: Visibility(
-                                        visible: _emailKey,
-                                        child: TextFormField(
-                                          controller: _EmailForDriver,
-                                          focusNode: _focusNode8,
-                                          // style: TextStyle(
-                                          //     color: Colors.white,
-                                          //     fontSize: 18),
-                                          decoration: const InputDecoration(
-                                            suffixIcon: Tooltip(
-                                              textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  //fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                              message:
-                                                  'Email:\nTo accsses the\ndriver information',
-                                              child: Icon(
-                                                Icons.email,
-                                                color: Colors.redAccent,
-                                                size: 30,
-                                              ),
-                                              waitDuration:
-                                                  Duration(seconds: 7),
-                                            ),
-                                            border: OutlineInputBorder(),
-                                            labelStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
-                                            labelText: 'Driver Email',
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
                               ],
                             ),
                           ),
@@ -753,8 +691,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                       width: 360,
                       height: 84,
-
-                      //  height: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -798,11 +734,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               "address": _addressController.text.trim(),
                               "Type": _Type,
                               "Gender": _Gender,
-                              "token_family":
-                                  _TokenFamilyController.text.trim(),
                               "token_driver":
                                   _TokenDriverController.text.trim(),
-                              "email_for_dirver": _EmailForDriver.text.trim(),
                               "image": _image,
                             }).then((vlaue) => {
                                       //print(_emailController.text.trim())
@@ -816,7 +749,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             } else if (_Type == "Family") {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: ((context) => WelcomeScreen())));
+                                      builder: ((context) => Token(
+                                          familyEmail:
+                                              _emailController.text))));
                             }
 
                             //lets make a new screen

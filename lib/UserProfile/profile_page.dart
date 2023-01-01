@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
-  String email = "muhammed@gmail.com";
+  String email = "muhammed56@gmail.com";
   //ProfilePage({required this.email});
   static const screenRoute = 'ProfilePage';
   @override
@@ -32,6 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String Gender = '';
   //String email = "muhammed@gmail.com";
   String phone = '';
+  String token = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +61,11 @@ class _ProfilePageState extends State<ProfilePage> {
           first_name = fname[0].toUpperCase() + fname.substring(1);
           last_name = lname[0].toUpperCase() + lname.substring(1);
           name = first_name + ' ' + last_name;
-          age = snapshot.data!['age'];
+
           address = add[0].toUpperCase() + add.substring(1);
           Type = snapshot.data!['Type'];
           Gender = snapshot.data!['Gender'];
-          // email = snapshot.data!['email'];
+          token = snapshot.data!['token_driver'];
           phone = snapshot.data!['phone'];
 
           return Scaffold(
@@ -80,7 +81,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 buildName(user),
                 const SizedBox(height: 24),
                 const SizedBox(height: 24),
-                NumbersWidget(),
+                // NumbersWidget(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    buildButton(context, token, 'Token'),
+                    buildDivider(),
+                    buildButton(context, Type, 'Type'),
+                    buildDivider(),
+                    buildButton(context, Gender, 'Gender'),
+                  ],
+                ),
                 const SizedBox(height: 48),
                 buildAbout(user),
               ],
@@ -222,3 +233,31 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
 }
+
+Widget buildDivider() => Container(
+      height: 24,
+      child: VerticalDivider(),
+    );
+
+Widget buildButton(BuildContext context, String value, String text) =>
+    MaterialButton(
+      padding: EdgeInsets.symmetric(vertical: 4),
+      onPressed: () {},
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            value,
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
+          ),
+          SizedBox(height: 2),
+          Text(
+            text,
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+        ],
+      ),
+    );
