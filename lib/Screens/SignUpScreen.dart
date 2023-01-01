@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
+// import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
 import 'package:oma/main.dart';
@@ -25,12 +26,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _LastNameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _TokenFamilyController = TextEditingController();
+  final TextEditingController _TokenDriverController = TextEditingController();
+  final TextEditingController _EmailForDriver = TextEditingController();
   final FocusNode _focusNode1 = FocusNode();
   final FocusNode _focusNode2 = FocusNode();
   final FocusNode _focusNode3 = FocusNode();
   final FocusNode _focusNode4 = FocusNode();
   final FocusNode _focusNode5 = FocusNode();
   final FocusNode _focusNode6 = FocusNode();
+  final FocusNode _focusNode7 = FocusNode();
+  final FocusNode _focusNode8 = FocusNode();
+  final FocusNode _focusNode9 = FocusNode();
 
   static Future<User?> SignUpUsingEmailPassword(
       {required String email,
@@ -50,13 +57,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   bool showSpinner = false;
-  String _Gender = 'Male';
+  String _Gender = 'Select...';
   String _image =
       'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80';
 
   String _Type = '';
   bool _family = false;
   bool _driver = false;
+  bool _emailKey = false;
   @override
   void initState() {
     super.initState();
@@ -66,7 +74,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           !_focusNode3.hasFocus &&
           !_focusNode4.hasFocus &&
           !_focusNode5.hasFocus &&
-          !_focusNode6.hasFocus) {
+          !_focusNode6.hasFocus &&
+          !_focusNode7.hasFocus &&
+          !_focusNode8.hasFocus &&
+          !_focusNode9.hasFocus) {
         FocusScope.of(context).unfocus();
       }
     });
@@ -83,6 +94,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
           _focusNode4.unfocus();
           _focusNode5.unfocus();
           _focusNode6.unfocus();
+          _focusNode7.unfocus();
+          _focusNode8.unfocus();
+          _focusNode9.unfocus();
         }),
         child: Container(
           decoration: BoxDecoration(
@@ -460,33 +474,87 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Login as Family or Driver',
+                                      'Login as Family or Driver:',
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.white),
                                     ),
                                   ],
                                 ),
-                                Row(
+                                ///// Family? + familyToken ///////////////////////////////////
+                                Column(
                                   children: [
-                                    Center(
-                                      child: Checkbox(
-                                        value: _family,
-                                        onChanged: ((value) {
-                                          setState(() {
-                                            _family = value!;
-                                            _driver = false;
-                                          });
-                                        }),
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Checkbox(
+                                          value: _family,
+                                          onChanged: ((value) {
+                                            setState(() {
+                                              _family = value!;
+                                              _driver = false;
+                                              _emailKey = true;
+                                            });
+                                          }),
+                                        ),
+                                        // SizedBox(
+                                        //   width: 5,
+                                        // ),
+                                        Text(
+                                          'Family',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                        ),
+                                        SizedBox(
+                                          width: 40,
+                                        ),
+                                        SizedBox(
+                                          width: 160,
+                                          height: 40,
+                                          child: Visibility(
+                                            visible: _family,
+                                            child: TextFormField(
+                                              controller:
+                                                  _TokenFamilyController,
+                                              focusNode: _focusNode7,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18),
+                                              decoration: const InputDecoration(
+                                                suffixIcon: Tooltip(
+                                                  textStyle: TextStyle(
+                                                      color: Colors.black,
+                                                      //fontWeight: FontWeight.bold,
+                                                      fontSize: 18),
+                                                  message:
+                                                      'Token number:\nTo accsses the\ndriver information',
+                                                  child: Icon(
+                                                    Icons.info,
+                                                    color: Colors.redAccent,
+                                                    size: 30,
+                                                  ),
+                                                  waitDuration:
+                                                      Duration(seconds: 7),
+                                                ),
+                                                border: OutlineInputBorder(),
+                                                labelStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                                labelText: 'Token',
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Text(
-                                      'Family',
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.white),
-                                    )
                                   ],
                                 ),
+
+                                /// Driver? + DriverToken..////////////////////////////////////////////////
                                 Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Center(
                                       child: Checkbox(
@@ -495,6 +563,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           setState(() {
                                             _driver = value!;
                                             _family = false;
+                                            _emailKey = false;
                                           });
                                         }),
                                       ),
@@ -503,22 +572,105 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       'Driver',
                                       style: TextStyle(
                                           fontSize: 18, color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      width: 50,
+                                    ),
+                                    SizedBox(
+                                      width: 160,
+                                      height: 40,
+                                      child: Visibility(
+                                        visible: _driver,
+                                        child: TextFormField(
+                                          controller: _TokenDriverController,
+                                          focusNode: _focusNode9,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                          decoration: const InputDecoration(
+                                            suffixIcon: Tooltip(
+                                              textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  //fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                              message:
+                                                  'Token number:\nAllow family accsses\ndriver information',
+                                              child: Icon(
+                                                Icons.info,
+                                                color: Colors.redAccent,
+                                                size: 30,
+                                              ),
+                                              showDuration:
+                                                  Duration(seconds: 8),
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            labelStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                            labelText: 'Token',
+                                          ),
+                                        ),
+                                      ),
                                     )
                                   ],
                                 ),
+                                ////Email Driver ///////////////////////////////////////////////////////
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 380,
+                                      height: 40,
+                                      child: Visibility(
+                                        visible: _emailKey,
+                                        child: TextFormField(
+                                          controller: _EmailForDriver,
+                                          focusNode: _focusNode8,
+                                          // style: TextStyle(
+                                          //     color: Colors.white,
+                                          //     fontSize: 18),
+                                          decoration: const InputDecoration(
+                                            suffixIcon: Tooltip(
+                                              textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  //fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                              message:
+                                                  'Email:\nTo accsses the\ndriver information',
+                                              child: Icon(
+                                                Icons.email,
+                                                color: Colors.redAccent,
+                                                size: 30,
+                                              ),
+                                              waitDuration:
+                                                  Duration(seconds: 7),
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            labelStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                            labelText: 'Driver Email',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
 
                           /// Gender ///////////////////////////////////////////////////////////////////////////////////////
                           Container(
                             alignment: Alignment(-0.7, 0.0),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              //mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Gender',
-                                  textAlign: TextAlign.left,
+                                  'Gender :',
+                                  //textAlign: TextAlign.right,
                                   style: TextStyle(
                                       fontSize: 22,
                                       color: Colors.white,
@@ -546,6 +698,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     color: Colors.white,
                                   ),
                                   items: <String>[
+                                    'Select...',
                                     'Male',
                                     'Female',
                                   ]
@@ -553,8 +706,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         (e) => DropdownMenuItem(
                                             value: e,
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
+                                              // mainAxisAlignment:
+                                              //   MainAxisAlignment.spaceAround,
                                               children: [
                                                 Text(
                                                   e,
@@ -565,10 +718,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 // SizedBox(
                                                 //   width: 90,
                                                 // ),
-                                                Icon(
-                                                  Icons.female,
-                                                  color: Colors.white,
-                                                )
+                                                // Icon(
+                                                //   Icons.female,
+                                                //   color: Colors.white,
+                                                // )
                                               ],
                                             )),
                                       )
@@ -618,8 +771,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             null;
-                          }
-                          // setState(() {
+                          } // setState(() {
                           //   saveContact();
                           // });
 
@@ -646,6 +798,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               "address": _addressController.text.trim(),
                               "Type": _Type,
                               "Gender": _Gender,
+                              "token_family":
+                                  _TokenFamilyController.text.trim(),
+                              "token_driver":
+                                  _TokenDriverController.text.trim(),
+                              "email_for_dirver": _EmailForDriver.text.trim(),
                               "image": _image,
                             }).then((vlaue) => {
                                       //print(_emailController.text.trim())
@@ -687,11 +844,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-
-  // void saveContact() {
-  //   String name = _nameController.text;
-  //   String number = _numberController.text;
-  //   Map<String, String> details = {'name': name, 'number': number};
-  //   _databaseReference.push().set(details);
-  // }
 }

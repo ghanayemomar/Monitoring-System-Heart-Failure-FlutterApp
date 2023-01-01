@@ -381,9 +381,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     //print(widget.email);
                     if (_formKey.currentState!.validate()) {
                       FirebaseFirestore.instance
-                          .collection("Users")
+                          .collection("Medical")
                           .doc(widget.email)
-                          .update({
+                          .set({
                         "age": _AgeController.text.trim(),
                         "weight": _WeightController.text.trim() + ' kg',
                         "height": _HeightController.text.trim() + ' cm',
