@@ -1,18 +1,29 @@
+import 'dart:async';
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/LoginScreen.dart';
+import 'package:oma/Screens/SignUpScreen.dart';
+import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
 import 'package:oma/main.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
+  final String email;
+  MedicalHistoryPage({required this.email});
+
   @override
   _MedicalHistoryPageState createState() => _MedicalHistoryPageState();
 }
 
 class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   final _formKey = GlobalKey<FormState>();
-  late int _age;
-  late int _weight;
+  final TextEditingController _AgeController = TextEditingController();
+  final TextEditingController _WeightController = TextEditingController();
+  final TextEditingController _HeightController = TextEditingController();
+  final TextEditingController _MedicationController = TextEditingController();
+  final TextEditingController _illnesController = TextEditingController();
 
   bool _hadHeartAttack = false;
   bool _takesMedication = false;
@@ -30,27 +41,11 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   void initState() {
     super.initState();
     _focusNode1.addListener(() {
-      if (!_focusNode1.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode2.addListener(() {
-      if (!_focusNode2.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode3.addListener(() {
-      if (!_focusNode3.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode4.addListener(() {
-      if (!_focusNode4.hasFocus) {
-        FocusScope.of(context).unfocus();
-      }
-    });
-    _focusNode5.addListener(() {
-      if (!_focusNode5.hasFocus) {
+      if (!_focusNode1.hasFocus &&
+          !_focusNode2.hasFocus &&
+          !_focusNode3.hasFocus &&
+          !_focusNode4.hasFocus &&
+          !_focusNode5.hasFocus) {
         FocusScope.of(context).unfocus();
       }
     });
@@ -66,6 +61,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
           _focusNode4.unfocus();
           _focusNode5.unfocus();
         },
+        // onLongPressMoveUpdate: ,
+
         child: Container(
           width: double.infinity,
           height: double.infinity,
@@ -89,7 +86,10 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            SignUpScreen())));
                               },
                               child: const Icon(
                                 size: 28,
@@ -108,7 +108,16 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                           ],
                         ),
                         SizedBox(height: 10),
+
+                        /// Age ///////////////////////////////////////////////////////////////////////
                         TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your age';
+                            }
+                            return null;
+                          },
+                          controller: _AgeController,
                           focusNode: _focusNode5,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -118,23 +127,25 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                                 Icons.add_to_drive_sharp,
                                 color: Colors.white,
                               )),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your age';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              _age = int.parse(value!);
-                            });
-                          },
+
+                          // onSaved: (value) {
+                          //   setState(() {
+                          //     _age = int.parse(value!);
+                          //   });
+                          // },
                         ),
                         SizedBox(height: 10),
 
                         /// Weight ////////////////////////////////////////////////////////////////////
 
                         TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your weight';
+                            }
+                            return null;
+                          },
+                          controller: _WeightController,
                           focusNode: _focusNode1,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -145,23 +156,25 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             ),
                             labelText: 'Weight (in kg)',
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your weight';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              _weight = int.parse(value!);
-                            });
-                          },
+
+                          // onSaved: (value) {
+                          //   setState(() {
+                          //     _weight = int.parse(value!);
+                          //   });
+                          // },
                         ),
                         SizedBox(height: 10),
 
                         /// Height ////////////////////////////////////////////////////////////////////
 
                         TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your weight';
+                            }
+                            return null;
+                          },
+                          controller: _HeightController,
                           focusNode: _focusNode2,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -172,17 +185,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             ),
                             labelText: 'Height (in cm)',
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your weight';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              _weight = int.parse(value!);
-                            });
-                          },
+
+                          // onSaved: (value) {
+                          //   setState(() {
+                          //     _weight = int.parse(value!);
+                          //   });
+                          // },
                         ),
                         SizedBox(height: 10),
                         //// Blood Type/////////////////////////////////////
@@ -251,6 +259,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         SizedBox(height: 10),
                       ],
                     )),
+
+                /// had Heart attack before ! ////////////////////////////////////////////
                 CheckboxListTile(
                   title: Text(
                     'Had Heart Attack Before !',
@@ -263,6 +273,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     });
                   },
                 ),
+
+                /// take Medication ///////////////////////////////////////////////////////////////////
                 CheckboxListTile(
                   title: Text(
                     'Takes Medication !',
@@ -275,6 +287,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     });
                   },
                 ),
+
+                ///Had Illness /////////////////////////////////////////////////////////////////////////
                 CheckboxListTile(
                   title: Text(
                     'Had Illness !',
@@ -287,56 +301,71 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     });
                   },
                 ),
-                SizedBox(
-                  height: 30,
-                  child: ListView.builder(
-                    itemCount: _previousIllnesses.length,
-                    itemBuilder: (context, index) {
-                      return Text(_previousIllnesses[index]);
-                    },
-                  ),
-                ),
+                // SizedBox(
+                //   height: 30,
+                //   child: ListView.builder(
+                //     itemCount: _previousIllnesses.length,
+                //     itemBuilder: (context, index) {
+                //       return Text(_previousIllnesses[index]);
+                //     },
+                //   ),
+                // ),
+                ///midication information /////////////////////////////////////////////////////////
                 Visibility(
                   visible: _takesMedication,
                   child: TextFormField(
+                    maxLines: null,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This Field Cannot Be Empty';
+                      }
+                      return null;
+                    },
+
+                    controller: _MedicationController,
                     focusNode: _focusNode3,
                     style: TextStyle(color: Colors.white, fontSize: 18),
                     decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
                       labelStyle: TextStyle(color: Colors.white, fontSize: 18),
                       labelText: 'Enter medication information',
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'This Field Cannot Be Empty';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      setState(() {
-                        _medication = value!;
-                      });
-                    },
+
+                    // onSaved: (value) {
+                    //   setState(() {
+                    //     _medication = value!;
+                    //   });
+                    // },
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+
+                /// illness ////////////////////////////////////////////////////////////////////////////////
                 Visibility(
                   visible: _hadIllness,
                   child: TextFormField(
-                    focusNode: _focusNode4,
-                    decoration: const InputDecoration(
-                      labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-                      labelText: 'Enter Your illness',
-                    ),
+                    maxLines: null,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'This Field Cannot Be Empty';
                       }
                       return null;
                     },
-                    onSaved: (value) {
-                      setState(() {
-                        _medication = value!;
-                      });
-                    },
+                    controller: _illnesController,
+                    focusNode: _focusNode4,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      labelText: 'Enter Your illness',
+                    ),
+
+                    // onSaved: (value) {
+                    //   setState(() {
+                    //     _medication = value!;
+                    //   });
+                    // },
                   ),
                 ),
                 TextButton(
@@ -348,13 +377,25 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () async {
-                    // if (_formKey.currentState!.validate()) {
-                    //   null;
-                    // }
+                  onPressed: () {
+                    //print(widget.email);
+                    if (_formKey.currentState!.validate()) {
+                      FirebaseFirestore.instance
+                          .collection("Medical")
+                          .doc(widget.email)
+                          .set({
+                        "age": _AgeController.text.trim(),
+                        "weight": _WeightController.text.trim() + ' kg',
+                        "height": _HeightController.text.trim() + ' cm',
+                        "blood_type": _Blood,
+                        "had_heart_attack": _hadHeartAttack,
+                        "medication_information:": _MedicationController.text,
+                        "illnes": _illnesController.text,
+                      });
 
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: ((context) => const MyApp())));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: ((context) => LoginScreen())));
+                    }
                   },
                 ),
               ]),
