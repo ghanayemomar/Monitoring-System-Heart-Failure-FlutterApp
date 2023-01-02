@@ -5,6 +5,7 @@ import 'Appbar_Widget.dart';
 import 'Numbers_Widget.dart';
 import 'Image_Widget.dart';
 import 'user_preferences.dart';
+import '../Widget/MainWidget/constant.dart';
 
 class ProfilePage extends StatefulWidget {
   static const screenRoute = 'ProfilePage';
@@ -21,22 +22,28 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Scaffold(
-        backgroundColor: Colors.deepPurpleAccent,
-        body: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            imageWidget(
-              imagePath: user.imagePath,
-              onClicked: () async {},
-            ),
-            const SizedBox(height: 24),
-            buildName(user),
-            const SizedBox(height: 24),
-            const SizedBox(height: 24),
-            NumbersWidget(),
-            const SizedBox(height: 48),
-            buildAbout(user),
-          ],
+        // backgroundColor: Colors.deepPurpleAccent,
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(
+            colors: [mBackgroundColor, mSecondBackgroundColor],
+          )),
+          child: Column(
+            children: [
+              imageWidget(
+                imagePath: user.imagePath,
+                onClicked: () async {},
+              ),
+              const SizedBox(height: 24),
+              buildName(user),
+              const SizedBox(height: 24),
+              const SizedBox(height: 24),
+              NumbersWidget(),
+              const SizedBox(height: 48),
+              buildAbout(user),
+            ],
+          ),
         ),
       ),
     );
@@ -47,12 +54,14 @@ class _ProfilePageState extends State<ProfilePage> {
           Text(
             user.name,
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: mPrimaryTextColor),
           ),
           const SizedBox(height: 4),
           Text(
             user.email,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: mPrimaryTextColor),
           )
         ],
       );

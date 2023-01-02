@@ -54,6 +54,8 @@ dependencies:
   flare_flutter: ^3.0.2
   flutter_sms: ^2.3.3
   # flutter_ecg_stream: ^0.0.1
+  # pulse_widget: ^0.0.2
+
 
 
 

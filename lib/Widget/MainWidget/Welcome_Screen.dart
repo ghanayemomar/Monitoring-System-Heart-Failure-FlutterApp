@@ -8,67 +8,69 @@ import 'Menu_Card.dart';
 import 'My_Header.dart';
 import './constant.dart';
 
-class WelcomeScreenTesting extends StatefulWidget {
+class WelcomeScreenWidget extends StatefulWidget {
   @override
-  State<WelcomeScreenTesting> createState() => _WelcomeScreenTestingState();
+  State<WelcomeScreenWidget> createState() => _WelcomeScreenWidgetState();
 }
 
-class _WelcomeScreenTestingState extends State<WelcomeScreenTesting> {
+class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        MyHeader(
-          height: 333,
-          imageUrl: 'images/test.jpg',
-          child: Column(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: <Widget>[
-              HeaderLogo(),
-              const Text(
-                'Welcome',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: mTitleTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(
-                'Hello Omar Ghanayem\nEnjoy Your Drive',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              Spacer(),
-              Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.white,
-                size: 36,
-              ),
-              SizedBox(
-                height: 24,
-              ),
-            ],
-          ),
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [mBackgroundColor, mSecondBackgroundColor],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [mBackgroundColor, mSecondBackgroundColor],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
+      ),
+      child: Column(
+        children: <Widget>[
+          MyHeader(
+            height: 333,
+            imageUrl: 'images/1dce8fbb1b3377378628f68d1e7c4c23.jpg',
+            child: Column(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: <Widget>[
+                HeaderLogo(),
+                const Text(
+                  'Welcome',
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: mTitleTextColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Hello Omar Ghanayem\nEnjoy Your Drive',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: mPrimaryTextColor,
+                  ),
+                ),
+                Spacer(),
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.white,
+                  size: 36,
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+              ],
             ),
+          ),
+          Expanded(
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -125,8 +127,8 @@ class _WelcomeScreenTestingState extends State<WelcomeScreenTesting> {
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -23,7 +23,8 @@ class MedicalProfileScreen extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                        colors: [mBackgroundColor, mSecondBackgroundColor]),
+                      colors: [mBackgroundColor, mSecondBackgroundColor],
+                    ),
                   ),
                   // ignore: prefer_const_literals_to_create_immutables
                   child: Column(children: [
@@ -34,7 +35,7 @@ class MedicalProfileScreen extends StatelessWidget {
                     const CircleAvatar(
                       radius: 65.0,
                       backgroundImage: AssetImage('images/4138927.png'),
-                      backgroundColor: Colors.white,
+                      // backgroundColor: Colors.white,
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -57,168 +58,172 @@ class MedicalProfileScreen extends StatelessWidget {
                     child: Card(
                       margin: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
                       child: Container(
-                        width: 310.0,
-                        height: 300.0,
+                        width: double.infinity,
                         child: Padding(
                           padding: EdgeInsets.all(13.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // ignore: prefer_const_constructors
-                              Text(
-                                "Information",
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 // ignore: prefer_const_constructors
-                                style: TextStyle(
-                                  fontSize: 17.0,
-                                  fontWeight: FontWeight.w800,
+                                Text(
+                                  "Information",
+                                  // ignore: prefer_const_constructors
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
-                              ),
-                              Divider(
-                                color: Colors.grey[300],
-                              ),
+                                Divider(
+                                  color: Colors.grey[300],
+                                ),
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.bloodtype,
-                                    color: Colors.red,
-                                    size: 35,
-                                  ),
-                                  SizedBox(
-                                    width: 20.0,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Blood Type",
-                                        style: TextStyle(
-                                          fontSize: 15.0,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.bloodtype,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                    SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Blood Type",
+                                          style: TextStyle(
+                                            fontSize: 15.0,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "A+",
-                                        style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Colors.grey[400],
+                                        Text(
+                                          "A+",
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.grey[400],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.heart_broken,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                    SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Had Heart Attack Befor",
+                                          style: TextStyle(
+                                            fontSize: 15.0,
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.0,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.heart_broken,
-                                    color: Colors.red,
-                                    size: 35,
-                                  ),
-                                  SizedBox(
-                                    width: 20.0,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Had Heart Attack Befor",
-                                        style: TextStyle(
-                                          fontSize: 15.0,
+                                        Text(
+                                          "Yes",
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.grey[400],
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.sick,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                    SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Chronic Disease",
+                                          style: TextStyle(
+                                            fontSize: 15.0,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "Yes",
-                                        style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Colors.grey[400],
+                                        Text(
+                                          maxLines: 2,
+                                          "bloodasd",
+                                          overflow: TextOverflow.visible,
+                                          // softWrap: false,
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.grey[400],
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 35.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.medication,
+                                      color: Colors.red,
+                                      size: 35,
+                                    ),
+                                    SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Drug History",
+                                          style: TextStyle(
+                                            fontSize: 15.0,
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.0,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.sick,
-                                    color: Colors.red,
-                                    size: 35,
-                                  ),
-                                  SizedBox(
-                                    width: 20.0,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Chronic Disease",
-                                        style: TextStyle(
-                                          fontSize: 15.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        "blood Pressure",
-                                        style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Colors.grey[400],
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.0,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.medication,
-                                    color: Colors.red,
-                                    size: 35,
-                                  ),
-                                  SizedBox(
-                                    width: 20.0,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Drug History",
-                                        style: TextStyle(
-                                          fontSize: 15.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Eating cakes",
-                                        style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Colors.grey[400],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                        Text(
+                                          "Eating cakes",
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.grey[400],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
 
-                              SizedBox(
-                                height: 20.0,
-                              ),
-                            ],
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

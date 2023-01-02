@@ -11,12 +11,15 @@ class HeaderLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          heartAnimationIcon(),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 20),
+            child: heartAnimationIcon(),
+          ),
           const SizedBox(
-            width: 12,
+            width: 15,
           ),
           const Text(
             'Safe Drive',
