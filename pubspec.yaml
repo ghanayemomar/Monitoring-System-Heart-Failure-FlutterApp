@@ -50,7 +50,7 @@ dependencies:
   firebase_database: ^10.0.8
   introduction_screen: ^2.1.0
 
-  introduction_screen: ^3.1.2
+  
   fl_chart: ^0.55.2
   animated_icon: ^0.0.4
   flare_flutter: ^3.0.2
