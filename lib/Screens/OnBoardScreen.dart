@@ -260,7 +260,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             onDone: () => _onIntroEnd(context),
             onSkip: () => _onIntroEnd(context),
             showSkipButton: true,
-            skipFlex: 0,
+            // skipFlex: 0,
             nextFlex: 0,
             skip: const Text(
               'Skip',
