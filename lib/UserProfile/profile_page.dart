@@ -5,6 +5,7 @@ import 'Appbar_Widget.dart';
 import 'Numbers_Widget.dart';
 import 'Image_Widget.dart';
 import 'user_preferences.dart';
+import '../Widget/MainWidget/constant.dart';
 
 class ProfilePage extends StatefulWidget {
   static const screenRoute = 'ProfilePage';
@@ -21,22 +22,28 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Scaffold(
-        backgroundColor: Colors.deepPurpleAccent,
-        body: ListView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            imageWidget(
-              imagePath: user.imagePath,
-              onClicked: () async {},
-            ),
-            const SizedBox(height: 24),
-            buildName(user),
-            const SizedBox(height: 24),
-            const SizedBox(height: 24),
-            NumbersWidget(),
-            const SizedBox(height: 48),
-            buildAbout(user),
-          ],
+        // backgroundColor: Colors.deepPurpleAccent,
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(
+            colors: [mBackgroundColor, mSecondBackgroundColor],
+          )),
+          child: Column(
+            children: [
+              imageWidget(
+                imagePath: user.imagePath,
+                onClicked: () async {},
+              ),
+              const SizedBox(height: 24),
+              buildName(user),
+              const SizedBox(height: 24),
+              const SizedBox(height: 24),
+              NumbersWidget(),
+              const SizedBox(height: 48),
+              buildAbout(user),
+            ],
+          ),
         ),
       ),
     );
@@ -47,18 +54,20 @@ class _ProfilePageState extends State<ProfilePage> {
           Text(
             user.name,
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: mPrimaryTextColor),
           ),
           const SizedBox(height: 4),
           Text(
             user.email,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: mPrimaryTextColor),
           )
         ],
       );
 
   Widget buildAbout(User user) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
+        padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -76,11 +85,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.boy_rounded,
+                          const Icon(
+                            Icons.abc,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "First Name: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -89,6 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.First_Name,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -99,11 +109,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.boy_rounded,
+                          const Icon(
+                            Icons.abc,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Last Name: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -112,6 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.Last_Name,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -122,11 +133,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.location_on,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Address: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -135,6 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.Address,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),
@@ -145,11 +157,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.numbers_rounded,
+                          const Icon(
+                            Icons.phone,
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Phone Number: ",
                             style: TextStyle(
                                 fontSize: 20,
@@ -158,6 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             user.Phone_Number,
+                            // ignore: prefer_const_constructors
                             style: TextStyle(
                                 fontSize: 16, height: 1.4, color: Colors.white),
                           ),

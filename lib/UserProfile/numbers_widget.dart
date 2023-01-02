@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/constant.dart';
 
 class NumbersWidget extends StatelessWidget {
   @override
@@ -14,7 +15,9 @@ class NumbersWidget extends StatelessWidget {
       );
   Widget buildDivider() => Container(
         height: 24,
-        child: VerticalDivider(),
+        child: VerticalDivider(
+          color: mPrimaryTextColor,
+        ),
       );
 
   Widget buildButton(BuildContext context, String value, String text) =>
@@ -31,13 +34,13 @@ class NumbersWidget extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: Colors.white),
+                  color: mPrimaryTextColor),
             ),
             SizedBox(height: 2),
             Text(
               text,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: mPrimaryTextColor),
             ),
           ],
         ),

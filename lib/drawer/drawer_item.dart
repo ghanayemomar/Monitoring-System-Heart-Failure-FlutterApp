@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Widget/MainWidget/constant.dart';
 
 class DrawerItem extends StatelessWidget {
   const DrawerItem(
@@ -23,7 +24,7 @@ class DrawerItem extends StatelessWidget {
             Icon(
               icon,
               size: 25,
-              color: Colors.white,
+              color: mPrimaryTextColor,
             ),
             const SizedBox(
               width: 40,
@@ -33,7 +34,7 @@ class DrawerItem extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  color: mPrimaryTextColor),
             )
           ],
         ),
