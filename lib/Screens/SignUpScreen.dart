@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Column(
                         children: [
-                          SizedBox(height: 20),
+                          SizedBox(height: 30),
                           SizedBox(
                             height: 25,
                           ),
@@ -462,7 +462,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 20),
                           //////////////////////////////////////////////////
                           ///
                           ///
@@ -480,6 +480,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           fontSize: 20, color: Colors.white),
                                     ),
                                   ],
+                                ),
+                                SizedBox(
+                                  height: 10,
                                 ),
                                 ///// Family? + familyToken ///////////////////////////////////
                                 Column(
@@ -689,88 +692,90 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ///
                   //SizedBox(height: 20),
                   Container(
-                      width: 360,
-                      height: 84,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(215, 58, 22, 53),
-                        )),
-                        child: const Text(
-                          'Register',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            null;
-                          } // setState(() {
-                          //   saveContact();
-                          // });
-
-                          User? user = await SignUpUsingEmailPassword(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                              context: context);
-
-                          if (_family == true) {
-                            _Type = "Family";
-                          } else if (_driver == true) {
-                            _Type = "Driver";
-                          }
-
-                          if (user != null) {
-                            FirebaseFirestore.instance
-                                .collection("Users")
-                                .doc(_emailController.text)
-                                .set({
-                              "first_name": _FirstNameController.text.trim(),
-                              "last_name": _LastNameController.text.trim(),
-                              "email": _emailController.text.trim(),
-                              "phone": _phoneController.text.trim(),
-                              "address": _addressController.text.trim(),
-                              "Type": _Type,
-                              "Gender": _Gender,
-                              "token_driver":
-                                  _TokenDriverController.text.trim(),
-                              "image": _image,
-                            }).then((vlaue) => {
-                                      //print(_emailController.text.trim())
-                                    });
-                            if (_Type == "Driver") {
-                              Navigator.of(context)
-                                  .pushReplacement(MaterialPageRoute(
-                                      builder: ((context) => MedicalHistoryPage(
-                                            email: _emailController.text.trim(),
-                                          ))));
-                            } else if (_Type == "Family") {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: ((context) => Token(
-                                          familyEmail:
-                                              _emailController.text))));
-                            }
-
-                            //lets make a new screen
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                duration: Duration(seconds: 2),
-                                content: Text(
-                                  'Please Enter a correct information',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
-                              ),
-                            );
-                          }
-                        },
+                    width: 360,
+                    height: 84,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(215, 58, 22, 53),
                       )),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          null;
+                        } // setState(() {
+                        //   saveContact();
+                        // });
+
+                        User? user = await SignUpUsingEmailPassword(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text.trim(),
+                            context: context);
+
+                        if (_family == true) {
+                          _Type = "Family";
+                        } else if (_driver == true) {
+                          _Type = "Driver";
+                        }
+
+                        if (user != null) {
+                          FirebaseFirestore.instance
+                              .collection("Users")
+                              .doc(_emailController.text)
+                              .set({
+                            "first_name": _FirstNameController.text.trim(),
+                            "last_name": _LastNameController.text.trim(),
+                            "email": _emailController.text.trim(),
+                            "phone": _phoneController.text.trim(),
+                            "address": _addressController.text.trim(),
+                            "Type": _Type,
+                            "Gender": _Gender,
+                            "token_driver": _TokenDriverController.text.trim(),
+                            "image": _image,
+                          }).then((vlaue) => {
+                                    //print(_emailController.text.trim())
+                                  });
+                          if (_Type == "Driver") {
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                                    builder: ((context) => MedicalHistoryPage(
+                                          email: _emailController.text.trim(),
+                                        ))));
+                          } else if (_Type == "Family") {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: ((context) => Token(
+                                        familyEmail: _emailController.text))));
+                          }
+
+                          //lets make a new screen
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              duration: Duration(seconds: 2),
+                              content: Text(
+                                'Please Enter a correct information',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  )
                 ],
               ),
             ),
