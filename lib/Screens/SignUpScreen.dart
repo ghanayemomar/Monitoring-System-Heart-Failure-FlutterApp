@@ -4,11 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/Token.dart';
-// import 'package:oma/Screens/OnBoardScreen.dart';
-import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
-import 'package:oma/main.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
