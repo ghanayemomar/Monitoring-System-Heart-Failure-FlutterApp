@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Widget/MainWidget/constant.dart';
 
 class ProfilePage extends StatefulWidget {
-  String email = "muhammed56@gmail.com";
+  String email = "omar@gmail.com";
   //ProfilePage({required this.email});
   static const screenRoute = 'ProfilePage';
   @override
