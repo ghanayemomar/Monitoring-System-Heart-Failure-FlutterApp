@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/HealthMonitoringScreen.dart';
 import '../../Screens/MedicalProfileScreen.dart';
 import '../AnimatedWidget/AnimatedIconDrawer.dart';
 import 'Header_Logo.dart';
@@ -112,7 +113,10 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                     MenuCard(
                       imageUrl: 'images/3195462.png',
                       title: 'Health Monitoring',
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(
+                            context, HealthMonirtoring.screenRoute);
+                      },
                     ),
                     MenuCard(
                       imageUrl: 'images/4138927.png',

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class heartAnimationIcon extends StatefulWidget {
+  final double iconSize;
+  const heartAnimationIcon({super.key, required this.iconSize});
   @override
   _heartAnimationIconState createState() => _heartAnimationIconState();
 }
@@ -43,7 +45,7 @@ class _heartAnimationIconState extends State<heartAnimationIcon>
       scale: _iconScale,
       child: IconButton(
         icon: Icon(Icons.favorite_sharp, color: _iconColor),
-        iconSize: 90,
+        iconSize: widget.iconSize,
         onPressed: () {},
       ),
     );

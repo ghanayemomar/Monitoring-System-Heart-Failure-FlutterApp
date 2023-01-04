@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/OnBoardScreen.dart';
-import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Screens/HealthMonitoringScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
-import 'package:oma/Widget/MainWidget/Welcome_Screen.dart';
-
+import './Screens/HealthMonitoringScreen.dart';
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
-import '../Screens/Welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Drawer/navigation_drawer.dart';
 import 'UserProfile/Profile_Page.dart';
@@ -26,22 +23,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
 
-          // primarySwatch: Colors.deepPurple,
-          ),
-      home: HomePageScreen(),
-      routes: {
-        LoginScreen.screenRoute: (context) => LoginScreen(),
-        SignUpScreen.screenRoute: (context) => SignUpScreen(),
-        HomePageScreen.screenRoute: (context) => HomePageScreen(),
-        // WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
-        ProfilePage.screenRoute: (context) => ProfilePage(),
-        NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
-        MedicalProfileScreen.screenRoute: ((context) => MedicalProfileScreen())
-      },
-    );
+            // primarySwatch: Colors.deepPurple,
+            ),
+        home: HomePageScreen(),
+        routes: {
+          LoginScreen.screenRoute: (context) => LoginScreen(),
+          SignUpScreen.screenRoute: (context) => SignUpScreen(),
+          HomePageScreen.screenRoute: (context) => HomePageScreen(),
+          // WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+          ProfilePage.screenRoute: (context) => ProfilePage(),
+          NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
+          MedicalProfileScreen.screenRoute: ((context) =>
+              MedicalProfileScreen()),
+          HealthMonirtoring.screenRoute: (context) => HealthMonirtoring(),
+        });
   }
 }
 //muhammed
