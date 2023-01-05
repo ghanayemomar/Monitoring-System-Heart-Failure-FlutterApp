@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
 import 'package:oma/Screens/OnBoardScreen.dart';
-import './Screens/HealthMonitoringScreen.dart';
+import 'package:oma/Widget/Spiner.dart';
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 
             // primarySwatch: Colors.deepPurple,
             ),
-        home: OnBoardScreen(),
+        home: LoginScreen(),
         routes: {
           LoginScreen.screenRoute: (context) => LoginScreen(),
           SignUpScreen.screenRoute: (context) => SignUpScreen(),

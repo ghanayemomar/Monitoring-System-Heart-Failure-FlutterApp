@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
-
 import 'package:oma/Screens/Welcome.dart';
-
 import 'package:oma/Utils/Color_utils.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Widget/My_Buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -14,6 +12,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class LoginScreen extends StatefulWidget {
   static const String screenRoute = 'LoginScreen';
 
+  @override
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -25,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
+
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -275,7 +275,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           context: context);
 
                       if (user != null) {
-                        //print(_emailController.text);
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setString('email', user.email!);
+                        print(_emailController.text);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: ((context) => HomePageScreen())));
                         //lets make a new screen

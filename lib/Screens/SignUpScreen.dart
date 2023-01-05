@@ -728,7 +728,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               .set({
                             "first_name": _FirstNameController.text.trim(),
                             "last_name": _LastNameController.text.trim(),
-                            "email": _emailController.text.trim(),
+                            "email": _emailController.text.trim().toLowerCase(),
                             "phone": _phoneController.text.trim(),
                             "address": _addressController.text.trim(),
                             "Type": _Type,
