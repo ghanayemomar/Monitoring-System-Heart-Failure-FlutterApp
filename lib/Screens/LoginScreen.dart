@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/PasswordResetScreen.dart';
 import 'package:oma/Screens/Welcome.dart';
 import 'package:oma/Utils/Color_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -252,6 +253,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Radius.circular(10),
                                 ),
                               ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            PasswordResetScreen())));
+                              },
+                              child: Text('Forgot Password?'),
                             ),
                           ),
                         ],

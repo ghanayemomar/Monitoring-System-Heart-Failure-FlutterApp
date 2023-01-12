@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
@@ -8,6 +10,7 @@ import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Drawer/navigation_drawer.dart';
+import 'Screens/PasswordResetScreen.dart';
 import 'UserProfile/Profile_Page.dart';
 
 Future<void> main() async {
@@ -33,12 +36,15 @@ class MyApp extends StatelessWidget {
         routes: {
           LoginScreen.screenRoute: (context) => LoginScreen(),
           SignUpScreen.screenRoute: (context) => SignUpScreen(),
+          PasswordResetScreen.screenRoute: (context) => HomePageScreen(),
           HomePageScreen.screenRoute: (context) => HomePageScreen(),
           // WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
           ProfilePage.screenRoute: (context) => ProfilePage(),
+
           NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
           MedicalProfileScreen.screenRoute: ((context) =>
               MedicalProfileScreen()),
+
           HealthMonirtoring.screenRoute: (context) => HealthMonirtoring(),
         });
   }
