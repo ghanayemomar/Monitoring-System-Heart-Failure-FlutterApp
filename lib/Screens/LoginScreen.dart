@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           SizedBox(height: 22),
 
-                          /// Enter Your Password ///////////////////////////////////////////////////////
+                          /// Enter Your Password /////////////////////////////////////////////////////////////
                           TextFormField(
                             focusNode: _focusNode2,
                             controller: _passwordController,
@@ -278,7 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         prefs.setString('email', user.email!);
-                        print(_emailController.text);
+
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: ((context) => HomePageScreen())));
                         //lets make a new screen

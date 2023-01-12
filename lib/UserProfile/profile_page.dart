@@ -30,13 +30,14 @@ class _ProfilePageState extends State<ProfilePage> {
   String address = '';
   String Type = '';
   String Gender = '';
-  //String email = "muhammed@gmail.com";
   String phone = '';
   String token = '';
-  String emailStorage = "";
+  String emailStorage = " ";
   @override
   void initState() {
-    getData();
+    setState(() {
+      getData();
+    });
   }
 
   getData() async {
@@ -60,13 +61,21 @@ class _ProfilePageState extends State<ProfilePage> {
         builder: (context, snapshot) {
           if (!snapshot.hasData)
             return Scaffold(
-              backgroundColor: Colors.deepPurpleAccent,
-              body: Center(
-                  child: Text(
-                'Profile...',
-                style: TextStyle(fontSize: 22),
-              )),
-            );
+                body: Center(
+                    child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Loading",
+                  style: TextStyle(fontSize: 24),
+                )
+              ],
+            )));
+
           fname = (snapshot.data!['first_name']);
           lname = snapshot.data!['last_name'];
           add = snapshot.data!['address'];
