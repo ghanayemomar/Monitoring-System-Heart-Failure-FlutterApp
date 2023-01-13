@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
+import 'package:oma/Widget/Spiner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Screens/MedicalProfileScreen.dart';
 import '../AnimatedWidget/AnimatedIconDrawer.dart';
 import 'Header_Logo.dart';
@@ -15,6 +18,58 @@ class WelcomeScreenWidget extends StatefulWidget {
 }
 
 class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
+  String emailStorage = " ";
+  String Type = '';
+  String emailDriver = " ";
+  String driverName = '';
+  String fname = '';
+  String lname = '';
+  @override
+  void initState() {
+    getData();
+  }
+
+  getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      emailDriver = prefs.getString('email')!;
+      print(emailStorage);
+      FirebaseFirestore.instance
+          .collection('Users')
+          .doc(emailDriver)
+          .get()
+          .then((snapshot) {
+        if (snapshot.exists) {
+          Type = snapshot.data()!['Type'].toString();
+          if (Type == "Driver") {
+            fname = snapshot.data()!['first_name'].toString();
+            lname = snapshot.data()!['last_name'].toString();
+            driverName =
+                "${fname[0].toUpperCase()}${fname.substring(1)} ${lname[0].toUpperCase()}${lname.substring(1)}";
+          } else if (Type == "Family") {
+            emailDriver = snapshot.data()!['email_driver'].toString();
+            FirebaseFirestore.instance
+                .collection('Users')
+                .doc(emailDriver)
+                .get()
+                .then((snapshot) {
+              if (snapshot.exists) {
+                fname = snapshot.data()!['first_name'].toString();
+                lname = snapshot.data()!['last_name'].toString();
+                driverName =
+                    "${fname[0].toUpperCase()}${fname.substring(1)} ${lname[0].toUpperCase()}${lname.substring(1)}";
+              } else {
+                print('Document does not exist on the database');
+              }
+            });
+          }
+        } else {
+          print('Document does not exist on the database');
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -121,7 +176,13 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                     MenuCard(
                       imageUrl: 'images/4138927.png',
                       title: 'Medical History',
-                      press: () {
+                      press: () async {
+                        print(emailDriver);
+                        print(driverName);
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setString('emailDriver', emailDriver);
+                        prefs.setString('driverName', driverName);
                         Navigator.pushNamed(
                             context, MedicalProfileScreen.screenRoute);
                       },

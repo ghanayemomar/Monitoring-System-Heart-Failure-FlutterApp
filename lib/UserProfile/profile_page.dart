@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'user.dart';
 import 'Appbar_Widget.dart';
 import 'Image_Widget.dart';
@@ -9,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Widget/MainWidget/constant.dart';
 
 class ProfilePage extends StatefulWidget {
-  String email = "muhammed56@gmail.com";
   //ProfilePage({required this.email});
   static const screenRoute = 'ProfilePage';
   @override
@@ -30,9 +30,22 @@ class _ProfilePageState extends State<ProfilePage> {
   String address = '';
   String Type = '';
   String Gender = '';
-  //String email = "muhammed@gmail.com";
   String phone = '';
   String token = '';
+  String emailStorage = " ";
+  @override
+  void initState() {
+    setState(() {
+      getData();
+    });
+  }
+
+  getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      emailStorage = prefs.getString('email')!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +56,26 @@ class _ProfilePageState extends State<ProfilePage> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("Users")
-            .doc(widget.email)
+            .doc(emailStorage)
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData)
             return Scaffold(
-              backgroundColor: Colors.deepPurpleAccent,
-              body: Center(
-                  child: Text(
-                'Profile...',
-                style: TextStyle(fontSize: 22),
-              )),
-            );
+                body: Center(
+                    child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Loading",
+                  style: TextStyle(fontSize: 24),
+                )
+              ],
+            )));
+
           fname = (snapshot.data!['first_name']);
           lname = snapshot.data!['last_name'];
           add = snapshot.data!['address'];
@@ -113,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           const SizedBox(height: 16),
           Text(
-            widget.email,
+            emailStorage,
             style: TextStyle(color: Colors.white, fontSize: 20),
           )
         ],
