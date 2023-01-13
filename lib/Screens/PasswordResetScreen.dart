@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/LoginScreen.dart';
+import 'package:oma/Widget/AnimatedWidget/AnimatedIconBack.dart';
+import 'package:oma/Widget/My_Buttom.dart';
+import '../Widget/AnimatedWidget/AnimatedIconWelcome.dart';
 
 class PasswordResetScreen extends StatefulWidget {
   static const String screenRoute = 'PasswordResetScreen';
@@ -15,48 +18,84 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: ((context) => LoginScreen())));
-          },
+      resizeToAvoidBottomInset: false,
+      body: Stack(children: [
+        Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('images/resetPassword.png'),
+                fit: BoxFit.cover),
+          ),
         ),
-        title: Text(
-          'Reset Password',
+        SafeArea(
+          child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+              child: const Text(
+                'Reset Your Password',
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 5),
+              )),
         ),
-        centerTitle: true,
-      ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                return null;
-              },
-              onSaved: (value) => _email = value!,
-              decoration: InputDecoration(
-                  labelText: 'Email',
-                  labelStyle: TextStyle(fontSize: 20),
-                  prefixIcon: Icon(Icons.no_encryption_gmailerrorred)),
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 300.0, right: 50, left: 50),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) => _email = value!,
+                    decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle:
+                            TextStyle(fontSize: 20, color: Colors.white),
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: Colors.white,
+                        )),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  MyButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        _sendPasswordResetEmail();
+                      }
+                    },
+                    color: Colors.black,
+                    title: ('Reset Password'),
+                  ),
+                  TextButton(
+                    child: Text(
+                      "Not You?",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 30),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginScreen.screenRoute);
+                    },
+                  )
+                ],
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  _sendPasswordResetEmail();
-                }
-              },
-              child: Text('Send Password Reset Email'),
-            ),
-          ],
+          ),
         ),
-      ),
+      ]),
     );
   }
 

@@ -19,11 +19,6 @@ class imageWidget extends StatelessWidget {
       child: Stack(
         children: [
           buildImage(),
-          Positioned(
-            bottom: 0,
-            right: 4,
-            child: buildEditIcon(color),
-          ),
         ],
       ),
     );
@@ -45,20 +40,6 @@ class imageWidget extends StatelessWidget {
       ),
     );
   }
-
-  Widget buildEditIcon(Color color) => buildCircle(
-        color: Colors.white,
-        all: 3,
-        child: buildCircle(
-          color: color,
-          all: 8,
-          child: Icon(
-            Icons.edit,
-            color: Colors.white,
-            size: 20,
-          ),
-        ),
-      );
 
   Widget buildCircle({
     required Widget child,

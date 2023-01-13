@@ -234,7 +234,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: Colors.white,
                           ),
                           const Text(
-                            "Phone Number: ",
+                            "Phone: ",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,

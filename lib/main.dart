@@ -7,6 +7,7 @@ import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
 import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/TermsAndServicesScreen.dart';
+import 'package:oma/Screens/Token.dart';
 import 'package:oma/Screens/welcome.dart';
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: EmergencyScreen(),
+        home: OnBoardScreen(),
         routes: {
           LoginScreen.screenRoute: (context) => LoginScreen(),
           SignUpScreen.screenRoute: (context) => SignUpScreen(),
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           HealthMonirtoring.screenRoute: (context) => HealthMonirtoring(),
           EmergencyScreen.screenRoute: (context) => EmergencyScreen(),
           TermsAndServices.screenRoute: (context) => TermsAndServices(),
+          WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
         });
   }
 }

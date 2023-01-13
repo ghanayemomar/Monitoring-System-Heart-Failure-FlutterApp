@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
 import './SignUpScreen.dart';
 import './LoginScreen.dart';
-import 'package:oma/Utils/color_utils.dart';
-
 import '../Widget/My_Buttom.dart';
 
 class WelcomeScreen extends StatefulWidget {

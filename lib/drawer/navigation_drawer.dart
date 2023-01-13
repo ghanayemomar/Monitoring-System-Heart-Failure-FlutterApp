@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
@@ -106,7 +107,7 @@ class NavigationDrawer extends StatelessWidget {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: ((context) => LoginScreen()),
+                          builder: ((context) => WelcomeScreen()),
                         ),
                       );
                     }),

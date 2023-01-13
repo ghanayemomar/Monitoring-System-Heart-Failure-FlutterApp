@@ -10,11 +10,6 @@ AppBar buildAppBar(BuildContext context) {
     leading: animayedIconBack(),
     backgroundColor: Colors.deepPurpleAccent,
     elevation: 0,
-    actions: [
-      // IconButton(
-      //   icon: Icon(icon),
-      //   onPressed: () {},
-      // ),
-    ],
+    actions: [],
   );
 }

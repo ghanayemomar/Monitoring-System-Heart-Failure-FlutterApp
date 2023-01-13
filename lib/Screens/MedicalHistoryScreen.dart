@@ -3,10 +3,12 @@ import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oma/Screens/LoginScreen.dart';
 import 'package:oma/Screens/SignUpScreen.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Utils/color_utils.dart';
+import 'package:oma/Widget/My_Buttom.dart';
 import 'package:oma/main.dart';
 
 class MedicalHistoryPage extends StatefulWidget {
@@ -53,62 +55,41 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          _focusNode1.unfocus();
-          _focusNode2.unfocus();
-          _focusNode3.unfocus();
-          _focusNode4.unfocus();
-          _focusNode5.unfocus();
-        },
-        // onLongPressMoveUpdate: ,
-
-        child: Container(
+      // resizeToAvoidBottomInset: false,
+      body: Stack(fit: StackFit.expand, children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
           width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4"),
-          ], begin: Alignment.topCenter, end: Alignment.center)),
+          child: Image.asset(
+            "images/resetPassword.png",
+            fit: BoxFit.cover,
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            _focusNode1.unfocus();
+            _focusNode2.unfocus();
+            _focusNode3.unfocus();
+            _focusNode4.unfocus();
+            _focusNode5.unfocus();
+          },
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(children: [
-                Form(
+            child: Column(children: [
+              SafeArea(
+                  child: Text(
+                "Medical History",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 34),
+              )),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
                     key: _formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(height: 30),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            SignUpScreen())));
-                              },
-                              child: const Icon(
-                                size: 28,
-                                Icons.arrow_back,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                'Medical History',
-                                style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-
                         /// Age ///////////////////////////////////////////////////////////////////////
                         TextFormField(
                           validator: (value) {
@@ -127,12 +108,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                                 Icons.add_to_drive_sharp,
                                 color: Colors.white,
                               )),
-
-                          // onSaved: (value) {
-                          //   setState(() {
-                          //     _age = int.parse(value!);
-                          //   });
-                          // },
                         ),
                         SizedBox(height: 10),
 
@@ -154,14 +129,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                               Icons.add_to_drive_sharp,
                               color: Colors.white,
                             ),
-                            labelText: 'Weight (in kg)',
+                            labelText: 'Weight (KG)',
                           ),
-
-                          // onSaved: (value) {
-                          //   setState(() {
-                          //     _weight = int.parse(value!);
-                          //   });
-                          // },
                         ),
                         SizedBox(height: 10),
 
@@ -183,14 +152,8 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                               Icons.add_to_drive_sharp,
                               color: Colors.white,
                             ),
-                            labelText: 'Height (in cm)',
+                            labelText: 'Height (CM)',
                           ),
-
-                          // onSaved: (value) {
-                          //   setState(() {
-                          //     _weight = int.parse(value!);
-                          //   });
-                          // },
                         ),
                         SizedBox(height: 10),
                         //// Blood Type/////////////////////////////////////
@@ -259,60 +222,55 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         SizedBox(height: 10),
                       ],
                     )),
+              ),
 
-                /// had Heart attack before ! ////////////////////////////////////////////
-                CheckboxListTile(
-                  title: Text(
-                    'Had Heart Attack Before !',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  value: _hadHeartAttack,
-                  onChanged: (value) {
-                    setState(() {
-                      _hadHeartAttack = value!;
-                    });
-                  },
+              /// had Heart attack before ! ////////////////////////////////////////////
+              CheckboxListTile(
+                title: Text(
+                  'Had Heart Attack Before !',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
+                value: _hadHeartAttack,
+                onChanged: (value) {
+                  setState(() {
+                    _hadHeartAttack = value!;
+                  });
+                },
+              ),
 
-                /// take Medication ///////////////////////////////////////////////////////////////////
-                CheckboxListTile(
-                  title: Text(
-                    'Takes Medication !',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  value: _takesMedication,
-                  onChanged: (value) {
-                    setState(() {
-                      _takesMedication = value!;
-                    });
-                  },
+              /// take Medication ///////////////////////////////////////////////////////////////////
+              CheckboxListTile(
+                title: Text(
+                  'Takes Medication !',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
+                value: _takesMedication,
+                onChanged: (value) {
+                  setState(() {
+                    _takesMedication = value!;
+                  });
+                },
+              ),
 
-                ///Had Illness /////////////////////////////////////////////////////////////////////////
-                CheckboxListTile(
-                  title: Text(
-                    'Had Illness !',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  value: _hadIllness,
-                  onChanged: (value) {
-                    setState(() {
-                      _hadIllness = value!;
-                    });
-                  },
+              ///Had Illness /////////////////////////////////////////////////////////////////////////
+              CheckboxListTile(
+                title: Text(
+                  'Had Illness !',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
-                // SizedBox(
-                //   height: 30,
-                //   child: ListView.builder(
-                //     itemCount: _previousIllnesses.length,
-                //     itemBuilder: (context, index) {
-                //       return Text(_previousIllnesses[index]);
-                //     },
-                //   ),
-                // ),
-                ///midication information /////////////////////////////////////////////////////////
-                Visibility(
-                  visible: _takesMedication,
+                value: _hadIllness,
+                onChanged: (value) {
+                  setState(() {
+                    _hadIllness = value!;
+                  });
+                },
+              ),
+
+              ///midication information /////////////////////////////////////////////////////////
+              Visibility(
+                visible: _takesMedication,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextFormField(
                     maxLines: null,
                     validator: (value) {
@@ -321,7 +279,6 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       }
                       return null;
                     },
-
                     controller: _MedicationController,
                     focusNode: _focusNode3,
                     style: TextStyle(color: Colors.white, fontSize: 18),
@@ -330,21 +287,18 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       labelStyle: TextStyle(color: Colors.white, fontSize: 18),
                       labelText: 'Enter medication information',
                     ),
-
-                    // onSaved: (value) {
-                    //   setState(() {
-                    //     _medication = value!;
-                    //   });
-                    // },
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-                /// illness ////////////////////////////////////////////////////////////////////////////////
-                Visibility(
-                  visible: _hadIllness,
+              /// illness ////////////////////////////////////////////////////////////////////////////////
+              Visibility(
+                visible: _hadIllness,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextFormField(
                     maxLines: null,
                     validator: (value) {
@@ -368,41 +322,35 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     // },
                   ),
                 ),
-                TextButton(
-                  child: Text(
-                    "Submit",
-                    // maxLines: 50,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: () {
-                    //print(widget.email);
-                    if (_formKey.currentState!.validate()) {
-                      FirebaseFirestore.instance
-                          .collection("Medical")
-                          .doc(widget.email)
-                          .set({
-                        "age": _AgeController.text.trim(),
-                        "weight": _WeightController.text.trim() + ' kg',
-                        "height": _HeightController.text.trim() + ' cm',
-                        "blood_type": _Blood,
-                        "had_heart_attack": _hadHeartAttack,
-                        "medication_information:": _MedicationController.text,
-                        "illnes": _illnesController.text,
-                      });
+              ),
+              MyButton(
+                title: "Submit",
+                color: Colors.black,
+                onPressed: () {
+                  //print(widget.email);
+                  if (_formKey.currentState!.validate()) {
+                    FirebaseFirestore.instance
+                        .collection("Medical")
+                        .doc(widget.email)
+                        .set({
+                      "age": _AgeController.text.trim(),
+                      "weight": _WeightController.text.trim() + ' kg',
+                      "height": _HeightController.text.trim() + ' cm',
+                      "blood_type": _Blood,
+                      "had_heart_attack": _hadHeartAttack,
+                      "medication_information:": _MedicationController.text,
+                      "illnes": _illnesController.text,
+                    });
 
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: ((context) => LoginScreen())));
-                    }
-                  },
-                ),
-              ]),
-            ),
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: ((context) => LoginScreen())));
+                  }
+                },
+              ),
+            ]),
           ),
         ),
-      ),
+      ]),
     );
   }
 }
