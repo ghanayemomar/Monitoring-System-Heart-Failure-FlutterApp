@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/EmergencyCall.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
 import 'package:oma/Widget/Spiner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -84,7 +85,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
       child: Column(
         children: <Widget>[
           MyHeader(
-            height: 333,
+            height: MediaQuery.of(context).size.height * 0.45,
             imageUrl: 'images/1dce8fbb1b3377378628f68d1e7c4c23.jpg',
             child: Column(
               // ignore: prefer_const_literals_to_create_immutables
@@ -155,7 +156,10 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                     MenuCard(
                       imageUrl: 'images/3649810.png',
                       title: 'Emergency ',
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(
+                            context, EmergencyScreen.screenRoute);
+                      },
                     ),
                   ],
                 ),

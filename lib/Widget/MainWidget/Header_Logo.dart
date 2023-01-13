@@ -16,7 +16,10 @@ class HeaderLogo extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 15, top: 20),
-            child: heartAnimationIcon(iconSize: 100),
+            child: heartAnimationIcon(
+              iconSize: 90,
+              x: 100,
+            ),
           ),
           const SizedBox(
             width: 15,

@@ -1,12 +1,6 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/LoginScreen.dart';
-import 'package:oma/Screens/welcome.dart';
-import 'package:oma/Widget/My_Buttom.dart';
 
 class Token extends StatefulWidget {
   String familyEmail;
@@ -66,20 +60,24 @@ class _TokenState extends State<Token> {
         key: _formKey,
         child: Scaffold(
           body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 100),
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/login.png'), fit: BoxFit.cover),
+            ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(
-                    height: 40,
+                    height: 226,
                   ),
-                  Text(
-                    'Enter the email and the token number for Driver to accsess there information and state of health :  ',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                  const Text(
+                    'Please Enter the email and the token number for Driver to accsess there information and state of health',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   ////driver email ////////////////////////////////////////////////////////////////////////
@@ -103,6 +101,9 @@ class _TokenState extends State<Token> {
                         Icons.email,
                         //   color: Colors.white,
                       ),
+                      labelStyle: TextStyle(
+                          //   color: Colors.white,
+                          fontSize: 18),
                       labelText: 'Email',
                       // labelStyle: TextStyle(color: Colors.white),
                       contentPadding: EdgeInsets.symmetric(
@@ -135,7 +136,7 @@ class _TokenState extends State<Token> {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
                   //// Token number ////////////////////////////////////////////////////////////////////////////
                   TextFormField(
@@ -171,6 +172,10 @@ class _TokenState extends State<Token> {
                           //   color: Colors.white,
                           fontSize: 18),
                       labelText: 'Token',
+                      prefixIcon: Icon(
+                        Icons.generating_tokens,
+                        //   color: Colors.white,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -209,14 +214,6 @@ class _TokenState extends State<Token> {
                             ),
                           );
                         }
-                        // print('herrrrrrrrrrrrrrrrrrrrrr');
-                        // print(await getToken(email));
-                        // print(_TokenDriverController.text);
-                        // if (await getToken(email)) {
-                        //  // updateEmailVerificationStatus(email, true);
-                        // } else {
-                        //   print('Eroorororoorororroroor');
-                        // }
                       },
                       child: Text(
                         'Done',

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:oma/Screens/Welcome.dart';
-import 'package:flutter/foundation.dart';
+import './constant.dart';
 
 class OnBoardScreen extends StatefulWidget {
   @override
@@ -14,25 +14,6 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   _onIntroEnd(context) async {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
-  }
-
-  _buildFullScrennImage(String src) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 40),
-      alignment: Alignment.topCenter,
-      margin: const EdgeInsets.all(22),
-      child: Image.asset(
-        "images/$src",
-        fit: BoxFit.contain,
-        height: 300,
-        width: double.infinity,
-        alignment: Alignment.topCenter,
-      ),
-    );
-  }
-
-  _buildImage(String assetName, [double width = 300]) {
-    return Image.asset('images/$assetName', width: width);
   }
 
   @override
@@ -57,234 +38,217 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     );
 
     return firstOpen
-        ? IntroductionScreen(
-            globalBackgroundColor: Colors.indigo,
-            globalHeader: Align(
-              alignment: Alignment.topRight,
-              child: SafeArea(
-                // bottom: true,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 10),
-                  child: _buildImage('care.png', 50),
-                ),
-              ),
-            ),
-            pages: [
-              //////////////////////
-              /////////////////////
-              PageViewModel(
-                titleWidget: const Text(
-                  "Welcome ...",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-                bodyWidget: const Text(
-                  "Welcome Hello how are you loaction emrgency hello what whrea oajios ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    wordSpacing: 1.5,
-                    fontSize: 20,
+        ? Container(
+            child: IntroductionScreen(
+              globalBackgroundColor: mSecondBackgroundColor,
+              pages: [
+                PageViewModel(
+                  titleWidget: const Text(
+                    "Welcome",
+                    style: TextStyle(
+                        color: mPrimaryTextColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                image: Container(
-                  padding: EdgeInsets.symmetric(vertical: 50),
-                  alignment: Alignment.topCenter,
-                  margin: const EdgeInsets.all(22),
-                  child: Image.asset(
-                    "images/welcomeIcon.png",
-                    fit: BoxFit.contain,
-                    height: 340,
-                    width: double.infinity,
+                  bodyWidget: const Text(
+                    "Thank you for choosing our application. We've put a lot of effort into making it user-friendly and efficient, and we're confident you'll enjoy it. Let's begin",
+                    style: TextStyle(
+                      color: mPrimaryTextColor,
+                      wordSpacing: 0.5,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  image: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 50),
                     alignment: Alignment.topCenter,
+                    margin: const EdgeInsets.all(22),
+                    child: Image.asset(
+                      "images/welcomeIcon.png",
+                      fit: BoxFit.contain,
+                      height: MediaQuery.of(context).size.height,
+                      width: double.infinity,
+                      alignment: Alignment.topCenter,
+                    ),
                   ),
+                  decoration: const PageDecoration(
+                      contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+                      fullScreen: true,
+                      bodyFlex: 2,
+                      imageFlex: 3),
                 ),
-                decoration: const PageDecoration(
-                    contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-                    fullScreen: true,
-                    bodyFlex: 2,
-                    imageFlex: 3),
-              ),
-              ///////////////////////////////
-              //////////////////////////////
-              PageViewModel(
-                titleWidget: const Text(
-                  "Ecg Monitoring",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-                bodyWidget: const Text(
-                  "Welcome Hello how are you loaction emrgency hello what whrea oajios ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    wordSpacing: 1.5,
-                    fontSize: 20,
+                PageViewModel(
+                  titleWidget: const Text(
+                    "Health Monitoring",
+                    style: TextStyle(
+                        color: mPrimaryTextColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                image: Container(
-                  padding: EdgeInsets.symmetric(vertical: 50),
-                  alignment: Alignment.topCenter,
-                  margin: const EdgeInsets.all(22),
-                  child: Image.asset(
-                    "images/ecgmonitoring.png",
-                    fit: BoxFit.contain,
-                    height: 340,
-                    width: double.infinity,
+                  bodyWidget: const Text(
+                    "Stay on top of your heart health with our mobile application's advanced heart rate and ECG monitoring feature",
+                    style: TextStyle(
+                      color: mPrimaryTextColor,
+                      wordSpacing: 0.5,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  image: Container(
+                    padding: EdgeInsets.symmetric(vertical: 50),
                     alignment: Alignment.topCenter,
+                    margin: const EdgeInsets.all(22),
+                    child: Image.asset(
+                      "images/ecgmonitoring.png",
+                      fit: BoxFit.contain,
+                      height: 340,
+                      width: double.infinity,
+                      alignment: Alignment.topCenter,
+                    ),
                   ),
+                  decoration: const PageDecoration(
+                      contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+                      fullScreen: true,
+                      bodyFlex: 2,
+                      imageFlex: 3),
                 ),
-                decoration: const PageDecoration(
-                    contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-                    fullScreen: true,
-                    bodyFlex: 2,
-                    imageFlex: 3),
-              ),
-              //////////////////////////
-              /////////////////////////
+                PageViewModel(
+                  titleWidget: const Text(
+                    "Location Services",
+                    style: TextStyle(
+                        color: mPrimaryTextColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  bodyWidget: const Text(
+                    "Our mobile application comes with a powerful location services feature that allows you to easily track and share your location with family.",
+                    style: TextStyle(
+                      color: mPrimaryTextColor,
+                      wordSpacing: 0.5,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  image: Container(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    alignment: Alignment.topCenter,
+                    margin: const EdgeInsets.all(22),
+                    child: Image.asset(
+                      "images/mobile-navigator.png",
+                      fit: BoxFit.contain,
+                      height: 340,
+                      width: double.infinity,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  decoration: const PageDecoration(
+                      contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+                      fullScreen: true,
+                      bodyFlex: 2,
+                      imageFlex: 3),
+                ),
+                PageViewModel(
+                  titleWidget: const Text(
+                    "Emergency Call ",
+                    style: TextStyle(
+                        color: mPrimaryTextColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  bodyWidget: const Text(
+                    "Our mobile application includes a dedicated emergency call feature, giving you one-touch access to emergency services in case of an emergency",
+                    style: TextStyle(
+                      color: mPrimaryTextColor,
+                      wordSpacing: 0.5,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  image: Container(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    alignment: Alignment.topCenter,
+                    margin: const EdgeInsets.all(22),
+                    child: Image.asset(
+                      "images/emgcall.png",
+                      fit: BoxFit.contain,
+                      height: 340,
+                      width: double.infinity,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  decoration: const PageDecoration(
+                      contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+                      fullScreen: true,
+                      bodyFlex: 2,
+                      imageFlex: 3),
+                ),
+                PageViewModel(
+                  titleWidget: const Text(
+                    "Family Connection",
+                    style: TextStyle(
+                        color: mPrimaryTextColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  bodyWidget: const Text(
+                    "Our mobile application's family connection feature provides a secure and easy way for you to share your location and health information with your family members, giving them peace of mind and allowing them to stay informed about your well-being",
+                    style: TextStyle(
+                      color: mPrimaryTextColor,
+                      wordSpacing: 0.5,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  image: Container(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    alignment: Alignment.topCenter,
+                    margin: const EdgeInsets.all(22),
+                    child: Image.asset(
+                      "images/family.png",
+                      fit: BoxFit.contain,
+                      height: 340,
+                      width: double.infinity,
+                      alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  decoration: const PageDecoration(
+                      contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+                      fullScreen: true,
+                      bodyFlex: 2,
+                      imageFlex: 3),
+                )
+              ],
+              onDone: () => _onIntroEnd(context),
+              onSkip: () => _onIntroEnd(context),
+              showSkipButton: true,
+              skipFlex: 0,
+              nextFlex: 0,
 
-              PageViewModel(
-                titleWidget: const Text(
-                  "Location Services",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-                bodyWidget: const Text(
-                  "Welcome Hello how are you loaction emrgency hello what whrea oajios ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    wordSpacing: 1.5,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                image: Container(
-                  padding: EdgeInsets.symmetric(vertical: 50),
-                  alignment: Alignment.topCenter,
-                  margin: const EdgeInsets.all(22),
-                  child: Image.asset(
-                    "images/mobile-navigator.png",
-                    fit: BoxFit.contain,
-                    height: 340,
-                    width: double.infinity,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                decoration: const PageDecoration(
-                    contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-                    fullScreen: true,
-                    bodyFlex: 2,
-                    imageFlex: 3),
+              skip: const Text(
+                'Skip',
+                style: TextStyle(color: Colors.white),
               ),
-              ///////////////////////////////
-              //////////////////////////////
-              PageViewModel(
-                titleWidget: const Text(
-                  "Emergency Call ",
+              next: const Icon(Icons.arrow_forward, color: Colors.white),
+              done: const Text('Done',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w600, color: Colors.white)),
+              ///////////////
+              controlsMargin: const EdgeInsets.all(16),
+              controlsPadding: const EdgeInsets.all(4),
+              dotsDecorator: const DotsDecorator(
+                size: Size(10.0, 10.0),
+                color: Colors.white,
+                activeSize: Size(22.0, 10.0),
+                activeColor: mPrimaryTextColor,
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
                 ),
-                bodyWidget: const Text(
-                  "Welcome Hello how are you loaction emrgency hello what whrea oajios ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    wordSpacing: 1.5,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                image: Container(
-                  padding: EdgeInsets.symmetric(vertical: 50),
-                  alignment: Alignment.topCenter,
-                  margin: const EdgeInsets.all(22),
-                  child: Image.asset(
-                    "images/emgcall.png",
-                    fit: BoxFit.contain,
-                    height: 340,
-                    width: double.infinity,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                decoration: const PageDecoration(
-                    contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-                    fullScreen: true,
-                    bodyFlex: 2,
-                    imageFlex: 3),
               ),
-              PageViewModel(
-                titleWidget: const Text(
-                  "Family Connection",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+              dotsContainerDecorator: const ShapeDecoration(
+                color: Colors.black54,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
-                bodyWidget: const Text(
-                  "Welcome Hello how are you loaction emrgency hello what whrea oajios ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    wordSpacing: 1.5,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                image: Container(
-                  padding: EdgeInsets.symmetric(vertical: 50),
-                  alignment: Alignment.topCenter,
-                  margin: const EdgeInsets.all(22),
-                  child: Image.asset(
-                    "images/family.png",
-                    fit: BoxFit.contain,
-                    height: 340,
-                    width: double.infinity,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                decoration: const PageDecoration(
-                    contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-                    fullScreen: true,
-                    bodyFlex: 2,
-                    imageFlex: 3),
-              )
-            ],
-            ///////////////////////
-            ///////////////////////
-            onDone: () => _onIntroEnd(context),
-            onSkip: () => _onIntroEnd(context),
-            showSkipButton: true,
-            // skipFlex: 0,
-            nextFlex: 0,
-            skip: const Text(
-              'Skip',
-              style: TextStyle(color: Colors.white),
-            ),
-            next: const Icon(Icons.arrow_forward, color: Colors.white),
-            done: const Text('Done',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600, color: Colors.white)),
-            controlsMargin: const EdgeInsets.all(16),
-            controlsPadding: const EdgeInsets.all(4),
-            dotsDecorator: const DotsDecorator(
-              size: Size(10.0, 10.0),
-              color: Colors.white,
-              activeSize: Size(22.0, 10.0),
-              activeColor: Colors.deepPurple,
-              activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              ),
-            ),
-            dotsContainerDecorator: const ShapeDecoration(
-              color: Colors.black54,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
               ),
             ),
           )
@@ -308,8 +272,5 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               ),
             )),
           );
-
-    // } else {
-    // return ;
   }
 }
