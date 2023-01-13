@@ -40,10 +40,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // AnimatedIcon(
-              //   // icon: AnimatedIcon.menuArrow,
-              //   progress: _animationController,
-              // ),
               SizedBox(height: 20),
               TextButton(
                 onPressed: _startAnimation,

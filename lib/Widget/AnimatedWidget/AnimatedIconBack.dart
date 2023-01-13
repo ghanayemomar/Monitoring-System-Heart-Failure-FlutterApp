@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/constant.dart';
 
 class animayedIconBack extends StatefulWidget {
   @override
@@ -40,10 +42,10 @@ class _animayedIconBackState extends State<animayedIconBack>
       icon: AnimatedIcon(
         icon: AnimatedIcons.arrow_menu,
         progress: _animation,
+        color: mPrimaryTextColor,
       ),
       onPressed: () {
-        Navigator.pop(context);
-        // Handle icon press here
+        Navigator.pushNamed(context, HomePageScreen.screenRoute);
       },
     );
   }

@@ -37,11 +37,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4"),
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+            image: DecorationImage(
+                image: AssetImage('images/login.png'), fit: BoxFit.cover),
+          ),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
