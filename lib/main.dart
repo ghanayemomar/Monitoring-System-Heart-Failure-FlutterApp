@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/EmergencyCall.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
+import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
 import 'package:oma/Screens/OnBoardScreen.dart';
-import './Screens/HealthMonitoringScreen.dart';
+import 'package:oma/Screens/TermsAndServicesScreen.dart';
+import 'package:oma/Screens/welcome.dart';
 import '../Screens/HomePageScreen.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
@@ -20,28 +23,21 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-
-            // primarySwatch: Colors.deepPurple,
-            ),
-        home: OnBoardScreen(),
+        home: EmergencyScreen(),
         routes: {
           LoginScreen.screenRoute: (context) => LoginScreen(),
           SignUpScreen.screenRoute: (context) => SignUpScreen(),
           HomePageScreen.screenRoute: (context) => HomePageScreen(),
-          // WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
           ProfilePage.screenRoute: (context) => ProfilePage(),
           NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
-          MedicalProfileScreen.screenRoute: ((context) =>
-              MedicalProfileScreen()),
+          MedicalProfileScreen.screenRoute: (context) => MedicalProfileScreen(),
           HealthMonirtoring.screenRoute: (context) => HealthMonirtoring(),
+          EmergencyScreen.screenRoute: (context) => EmergencyScreen(),
+          TermsAndServices.screenRoute: (context) => TermsAndServices(),
         });
   }
 }
-//muhammed
-//ghanayem
