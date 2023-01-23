@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/EmergencyCall.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
+import 'package:oma/Widget/MapWidget/Location.dart';
 import 'package:oma/Widget/Spiner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Screens/MedicalProfileScreen.dart';
@@ -77,7 +78,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [mBackgroundColor, mSecondBackgroundColor],
+          colors: [mSecondBackgroundColor, mBackgroundColor],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -86,7 +87,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
         children: <Widget>[
           MyHeader(
             height: MediaQuery.of(context).size.height * 0.45,
-            imageUrl: 'images/1dce8fbb1b3377378628f68d1e7c4c23.jpg',
+            imageUrl: 'images/resetPassword.png',
             child: Column(
               // ignore: prefer_const_literals_to_create_immutables
               children: <Widget>[
@@ -94,20 +95,31 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                 const Text(
                   'Welcome',
                   style: TextStyle(
-                    fontSize: 28,
-                    color: mTitleTextColor,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                    letterSpacing: 8,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
                 const SizedBox(
-                  height: 16,
+                  height: 30,
                 ),
-                Text(
-                  'Hello Omar Ghanayem\nEnjoy Your Drive',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: mPrimaryTextColor,
-                  ),
+                Column(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    Text(
+                      'omar.mohd.ghanayem@gmail.com',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
                 ),
                 Spacer(),
                 Icon(
@@ -135,7 +147,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                         'Our Health\nServices',
                         style: TextStyle(
                           color: mTitleTextColor,
-                          fontSize: 24,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -152,7 +164,9 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                     MenuCard(
                         imageUrl: 'images/7492103.png',
                         title: 'Location Services',
-                        press: () {}),
+                        press: () {
+                          Navigator.pushNamed(context, Location.screenRoute);
+                        }),
                     MenuCard(
                       imageUrl: 'images/3649810.png',
                       title: 'Emergency ',

@@ -110,11 +110,11 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
                               alignment: Alignment.bottomLeft,
                               child: animayedIconBack()),
                           const CircleAvatar(
-                            radius: 65.0,
+                            radius: 60.0,
                             backgroundImage: AssetImage('images/4138927.png'),
                           ),
                           const SizedBox(
-                            height: 10.0,
+                            height: 5.0,
                           ),
                           Text(
                             'Driver Name: ' + _name,

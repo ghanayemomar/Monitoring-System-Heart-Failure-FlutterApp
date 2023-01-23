@@ -29,48 +29,61 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         onTap: () {
           _focusNode1.unfocus();
         },
-        child: Container(
-          padding: EdgeInsets.only(top: 300),
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/login.png'), fit: BoxFit.cover),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              //  crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 50),
-                const Text(
-                  'Please Login Or Sign Up ',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    // fontFamily: 'IndieFlower',
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 50),
-                MyButton(
-                  color: Colors.black,
-                  title: 'Login',
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.screenRoute);
-                  },
-                ),
-                MyButton(
-                  color: Colors.black,
-                  title: 'Sign Up',
-                  onPressed: () {
-                    Navigator.pushNamed(context, SignUpScreen.screenRoute);
-                  },
-                )
-              ],
+        child: Stack(fit: StackFit.expand, children: [
+          Container(
+            padding: const EdgeInsets.only(top: 200),
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/login.png'), fit: BoxFit.cover),
             ),
           ),
-        ),
+          const SafeArea(
+              child: Padding(
+            padding: EdgeInsets.all(43.0),
+            child: Text(
+              "Safe Drive",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 50,
+                  letterSpacing: 20),
+            ),
+          )),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 70,
+              ),
+              const Text(
+                'Please Login Or Sign Up ',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                  // fontFamily: 'IndieFlower',
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 40),
+              MyButton(
+                color: Colors.black,
+                title: 'Login',
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.screenRoute);
+                },
+              ),
+              MyButton(
+                color: Colors.black,
+                title: 'Sign Up',
+                onPressed: () {
+                  Navigator.pushNamed(context, SignUpScreen.screenRoute);
+                },
+              )
+            ],
+          ),
+        ]),
       ),
     );
   }

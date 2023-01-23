@@ -477,7 +477,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         'Login as Family or Driver:',
                                         style: TextStyle(
                                             fontSize: 22,
-                                            color: Colors.blue,
+                                            color: Colors.black,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -597,7 +597,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     //textAlign: TextAlign.right,
                                     style: TextStyle(
                                         fontSize: 22,
-                                        color: Colors.blue,
+                                        color: Colors.black,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   DropdownButtonFormField<String>(

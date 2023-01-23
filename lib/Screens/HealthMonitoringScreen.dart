@@ -48,7 +48,7 @@ class _HealthMonirtoringState extends State<HealthMonirtoring> {
           children: [
             HealthMonitoringWidget(
               iconSize: 145,
-              x: 120,
+              x: 100,
             ),
 
             // LineChartSample()

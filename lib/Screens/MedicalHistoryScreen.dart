@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 import 'dart:ffi';
 
@@ -32,7 +34,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   bool _hadIllness = false;
   List<String> _previousIllnesses = [];
   String _medication = '';
-  String _Blood = 'A+';
+  String _Blood = 'Select...';
   final FocusNode _focusNode1 = FocusNode();
   final FocusNode _focusNode2 = FocusNode();
   final FocusNode _focusNode3 = FocusNode();
@@ -107,6 +109,11 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                               prefixIcon: Icon(
                                 Icons.add_to_drive_sharp,
                                 color: Colors.white,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                ),
                               )),
                         ),
                         SizedBox(height: 10),
@@ -124,13 +131,17 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                           focusNode: _focusNode1,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            labelStyle: TextStyle(color: Colors.white),
-                            prefixIcon: Icon(
-                              Icons.add_to_drive_sharp,
-                              color: Colors.white,
-                            ),
-                            labelText: 'Weight (KG)',
-                          ),
+                              labelStyle: TextStyle(color: Colors.white),
+                              prefixIcon: Icon(
+                                Icons.add_to_drive_sharp,
+                                color: Colors.white,
+                              ),
+                              labelText: 'Weight (KG)',
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                ),
+                              )),
                         ),
                         SizedBox(height: 10),
 
@@ -147,13 +158,17 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                           focusNode: _focusNode2,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            labelStyle: TextStyle(color: Colors.white),
-                            prefixIcon: Icon(
-                              Icons.add_to_drive_sharp,
-                              color: Colors.white,
-                            ),
-                            labelText: 'Height (CM)',
-                          ),
+                              labelStyle: TextStyle(color: Colors.white),
+                              prefixIcon: Icon(
+                                Icons.add_to_drive_sharp,
+                                color: Colors.white,
+                              ),
+                              labelText: 'Height (CM)',
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                ),
+                              )),
                         ),
                         SizedBox(height: 10),
                         //// Blood Type/////////////////////////////////////
@@ -163,7 +178,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         Container(
                           alignment: Alignment(-0.99, 0.0),
                           child: Text(
-                            'Choose Blood Type :',
+                            'Blood Type',
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: 16,
@@ -173,6 +188,12 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         ),
                         DropdownButtonFormField<String>(
                           value: _Blood,
+                          decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          )),
                           validator: ((value) {
                             if (value == null || value.isEmpty) {
                               return 'Please Select an option';
@@ -192,11 +213,15 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             color: Colors.white,
                           ),
                           items: <String>[
+                            'Select...',
                             'A+',
                             'A-',
                             'B+',
                             'B-',
+                            'AB',
+                            'AB-',
                             'O+',
+                            'O-',
                           ]
                               .map(
                                 (e) => DropdownMenuItem(
@@ -227,7 +252,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               /// had Heart attack before ! ////////////////////////////////////////////
               CheckboxListTile(
                 title: Text(
-                  'Had Heart Attack Before !',
+                  'Had Heart Attack Before',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 value: _hadHeartAttack,
@@ -241,7 +266,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               /// take Medication ///////////////////////////////////////////////////////////////////
               CheckboxListTile(
                 title: Text(
-                  'Takes Medication !',
+                  'Drug History',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 value: _takesMedication,
@@ -255,7 +280,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               ///Had Illness /////////////////////////////////////////////////////////////////////////
               CheckboxListTile(
                 title: Text(
-                  'Had Illness !',
+                  'Chronic Disease',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 value: _hadIllness,
@@ -281,11 +306,11 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     },
                     controller: _MedicationController,
                     focusNode: _focusNode3,
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    style: TextStyle(fontSize: 18),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-                      labelText: 'Enter medication information',
+                      labelText: 'Drug History',
                     ),
                   ),
                 ),
@@ -312,7 +337,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-                      labelText: 'Enter Your illness',
+                      labelText: 'Chronic Disease',
                     ),
 
                     // onSaved: (value) {

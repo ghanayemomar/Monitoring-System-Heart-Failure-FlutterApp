@@ -33,27 +33,27 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
       bodyTextStyle: TextStyle(fontSize: 19.0),
       descriptionPadding: EdgeInsets.all(16),
-      pageColor: Colors.blueGrey,
+      // pageColor: Colors.blueGrey,
       imagePadding: EdgeInsets.zero,
     );
 
     return firstOpen
         ? Container(
             child: IntroductionScreen(
-              globalBackgroundColor: mSecondBackgroundColor,
+              globalBackgroundColor: Colors.blue,
               pages: [
                 PageViewModel(
                   titleWidget: const Text(
                     "Welcome",
                     style: TextStyle(
-                        color: mPrimaryTextColor,
+                        color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
                   bodyWidget: const Text(
                     "Thank you for choosing our application. We've put a lot of effort into making it user-friendly and efficient, and we're confident you'll enjoy it. Let's begin",
                     style: TextStyle(
-                      color: mPrimaryTextColor,
+                      color: Colors.white,
                       wordSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -81,14 +81,14 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   titleWidget: const Text(
                     "Health Monitoring",
                     style: TextStyle(
-                        color: mPrimaryTextColor,
+                        color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
                   bodyWidget: const Text(
                     "Stay on top of your heart health with our mobile application's advanced heart rate and ECG monitoring feature",
                     style: TextStyle(
-                      color: mPrimaryTextColor,
+                      color: Colors.white,
                       wordSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -116,14 +116,14 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   titleWidget: const Text(
                     "Location Services",
                     style: TextStyle(
-                        color: mPrimaryTextColor,
+                        color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
                   bodyWidget: const Text(
                     "Our mobile application comes with a powerful location services feature that allows you to easily track and share your location with family.",
                     style: TextStyle(
-                      color: mPrimaryTextColor,
+                      color: Colors.white,
                       wordSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -151,14 +151,14 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   titleWidget: const Text(
                     "Emergency Call ",
                     style: TextStyle(
-                        color: mPrimaryTextColor,
+                        color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
                   bodyWidget: const Text(
                     "Our mobile application includes a dedicated emergency call feature, giving you one-touch access to emergency services in case of an emergency",
                     style: TextStyle(
-                      color: mPrimaryTextColor,
+                      color: Colors.white,
                       wordSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -186,14 +186,14 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   titleWidget: const Text(
                     "Family Connection",
                     style: TextStyle(
-                        color: mPrimaryTextColor,
+                        color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
                   bodyWidget: const Text(
                     "Our mobile application's family connection feature provides a secure and easy way for you to share your location and health information with your family members, giving them peace of mind and allowing them to stay informed about your well-being",
                     style: TextStyle(
-                      color: mPrimaryTextColor,
+                      color: Colors.white,
                       wordSpacing: 0.5,
                       fontSize: 20,
                     ),
@@ -239,7 +239,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 size: Size(10.0, 10.0),
                 color: Colors.white,
                 activeSize: Size(22.0, 10.0),
-                activeColor: mPrimaryTextColor,
+                activeColor: Colors.white,
                 activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)),
                 ),

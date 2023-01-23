@@ -60,8 +60,8 @@ dependencies:
   telephony: ^0.2.0
   device_info_plus: ^8.0.0
   shared_preferences: ^2.0.16
-  sms_maintained: ^0.2.5
-
+  geocoding: ^2.0.5
+  awesome_dialog: ^3.0.2
 
 
 
