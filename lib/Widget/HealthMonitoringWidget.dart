@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import '../Widget/MainWidget/constant.dart';
 
+//Stream<int> stream;
 class HealthMonitoringWidget extends StatefulWidget {
-  final double iconSize;
   final int x;
-  const HealthMonitoringWidget(
-      {super.key, required this.iconSize, required this.x});
+  const HealthMonitoringWidget({super.key, required this.x});
   @override
   _HealthMonitoringWidgetState createState() => _HealthMonitoringWidgetState();
 }
@@ -60,7 +59,7 @@ class _HealthMonitoringWidgetState extends State<HealthMonitoringWidget>
           scale: _iconScale,
           child: IconButton(
             icon: Icon(icon, color: color),
-            iconSize: widget.iconSize,
+            iconSize: 145,
             onPressed: () {},
           ),
         ),

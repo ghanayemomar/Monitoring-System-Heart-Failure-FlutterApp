@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/EmergencyCall.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
-import 'package:oma/Widget/MapWidget/Location.dart';
+import 'package:oma/Screens/Warning.dart';
 import 'package:oma/Widget/Spiner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Screens/MedicalProfileScreen.dart';

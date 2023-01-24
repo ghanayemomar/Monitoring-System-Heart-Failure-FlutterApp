@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:oma/Screens/Welcome.dart';
 import './constant.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
+
+// final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
 class OnBoardScreen extends StatefulWidget {
   @override
@@ -16,6 +19,13 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
         .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 
+  // void getDeviceToken() {
+  //   _firebaseMessaging.getToken().then((token) {
+  //     print("Device token: $token");
+  //     // Use this token to send notifications to the emulator
+  //   });
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +34,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
         _onIntroEnd(context);
       }
     });
+    // getDeviceToken();
   }
 
   @override
