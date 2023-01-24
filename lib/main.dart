@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/EmergencyCall.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
+import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
+import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/TermsAndServicesScreen.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Widget/MapWidget/Location.dart';

@@ -19,6 +19,7 @@ class LocationState extends State<Location> {
   late Position c1;
   var lat;
   var long;
+
   late CameraPosition _kGooglePlex;
 
   Future getper() async {
@@ -38,9 +39,6 @@ class LocationState extends State<Location> {
       per = await Geolocator.requestPermission();
       Navigator.pushNamed(context, 'backmap');
     }
-    print("+++++++++++++++++++++++");
-    print(per);
-    print("+++++++++++++++++++++++");
     return per;
   }
 
@@ -89,36 +87,43 @@ class LocationState extends State<Location> {
         title: Text('Current Location'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          _kGooglePlex == null || long == null || lat == null || c1 == null
-              ? CircularProgressIndicator()
-              : Container(
-                  height: 610,
-                  width: 400,
-                  child: GoogleMap(
-                    markers: mymarker,
-                    mapType: MapType.hybrid,
-                    myLocationEnabled: true,
-                    initialCameraPosition: _kGooglePlex,
-                    onMapCreated: (GoogleMapController controller) {
-                      gmc = controller;
-                    },
-                  ),
+      body: Stack(children: [
+        _kGooglePlex == null || long == null || lat == null || c1 == null
+            ? CircularProgressIndicator()
+            : SizedBox(
+                height: double.infinity,
+                width: 400,
+                child: GoogleMap(
+                  markers: mymarker,
+                  mapType: MapType.normal,
+                  myLocationEnabled: true,
+                  initialCameraPosition: _kGooglePlex,
+                  onMapCreated: (GoogleMapController controller) {
+                    gmc = controller;
+                  },
                 ),
-          ElevatedButton(
-            onPressed: () async {
-              LatLng latLng = LatLng(32.239075, 35.245778);
-              gmc.animateCamera(CameraUpdate.newCameraPosition(
-                  CameraPosition(target: latLng, zoom: 17)));
-            },
-            child: Text(
-              "Go To Hospital",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                LatLng latLng = LatLng(32.239075, 35.245778);
+                gmc.animateCamera(CameraUpdate.newCameraPosition(
+                    CameraPosition(target: latLng, zoom: 17)));
+              },
+              child: Text(
+                "Go To Hospital",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
             ),
-          )
-        ],
-      ),
+            SizedBox(
+              width: double.infinity,
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
