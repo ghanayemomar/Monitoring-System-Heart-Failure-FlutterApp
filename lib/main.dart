@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
-import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/TermsAndServicesScreen.dart';
+import 'package:oma/Screens/Warning.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:oma/Widget/MapWidget/Location.dart';
 import '../Screens/HomePageScreen.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: OnBoardScreen(),
+        home: Warning(),
         routes: {
           LoginScreen.screenRoute: (context) => LoginScreen(),
           SignUpScreen.screenRoute: (context) => SignUpScreen(),
