@@ -7,8 +7,9 @@ import '../Screens/constant.dart';
 
 class HealthMonirtoring extends StatefulWidget {
   static const screenRoute = 'HealthMonitoring';
+  final int x;
   // final int value = 100;
-  const HealthMonirtoring({super.key});
+  const HealthMonirtoring({super.key, required this.x});
 
   @override
   State<HealthMonirtoring> createState() => _HealthMonirtoringState();
@@ -36,6 +37,7 @@ class _HealthMonirtoringState extends State<HealthMonirtoring> {
       ),
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [mSecondBackgroundColor, mSecondBackgroundColor],
@@ -47,8 +49,7 @@ class _HealthMonirtoringState extends State<HealthMonirtoring> {
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             HealthMonitoringWidget(
-              iconSize: 145,
-              x: 120,
+              x: widget.x,
             ),
 
             // LineChartSample()
