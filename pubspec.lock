@@ -702,7 +702,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-<<<<<<< HEAD
   rive:
     dependency: transitive
     description:
@@ -710,7 +709,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.1"
-=======
   rxdart:
     dependency: "direct main"
     description:
@@ -718,7 +716,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.7"
->>>>>>> 7ca39fe3f8644feeb1298b6ba83123115f0fff5d
   shared_preferences:
     dependency: "direct main"
     description:
@@ -808,6 +805,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  telephony:
+    dependency: "direct main"
+    description:
+      name: telephony
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   term_glyph:
     dependency: transitive
     description:

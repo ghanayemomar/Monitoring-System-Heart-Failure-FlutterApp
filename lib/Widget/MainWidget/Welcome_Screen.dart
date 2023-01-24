@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:oma/Screens/EmergencyCall.dart';
 import 'package:oma/Screens/HealthMonitoringScreen.dart';
 import 'package:oma/Screens/Warning.dart';
+import 'package:oma/Widget/MapWidget/Location.dart';
 import 'package:oma/Widget/Spiner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Screens/MedicalProfileScreen.dart';
@@ -187,8 +188,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                       imageUrl: 'images/3195462.png',
                       title: 'Health Monitoring',
                       press: () {
-                        Navigator.pushNamed(
-                            context, HealthMonirtoring.screenRoute);
+                        Navigator.pushNamed(context, Warning.screenRoute);
                       },
                     ),
                     MenuCard(
