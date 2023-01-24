@@ -23,7 +23,7 @@ _messageNumber() {
 }
 
 class sendMessage {
-  final Telephony telephony = Telephony.instance;
+  final Tel ephony telephony = Telephony.instance;
 
   sendMessage(Future<String> sendSMS);
 
