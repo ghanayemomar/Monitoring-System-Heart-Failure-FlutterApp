@@ -1,12 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:oma/Widget/AnimatedWidget/AnimatedIconBack.dart';
+import 'package:oma/Widget/AnimatedWidget/AnimatedIconDrawer.dart';
+import 'package:oma/Widget/AnimatedWidget/AnimatedIconWelcome.dart';
+import 'package:oma/Widget/AnimatedWidget/profileanimatediconback.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'user.dart';
-import 'Appbar_Widget.dart';
 import 'Image_Widget.dart';
 import 'user_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import '../Widget/MainWidget/constant.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -52,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final user = UserPreferences.myUser;
 
     return Scaffold(
-      appBar: buildAppBar(context),
+      // appBar: buildAppBar(context),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("Users")
@@ -90,33 +93,56 @@ class _ProfilePageState extends State<ProfilePage> {
           phone = snapshot.data!['phone'];
 
           return Scaffold(
-            backgroundColor: Colors.deepPurpleAccent,
-            body: ListView(
-              physics: BouncingScrollPhysics(),
-              children: [
-                imageWidget(
-                  imagePath: image,
-                  onClicked: () async {},
+            body: Stack(children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,
+                child: Image.asset(
+                  "images/resetPassword.png",
+                  fit: BoxFit.cover,
                 ),
-                const SizedBox(height: 24),
-                buildName(user),
-                const SizedBox(height: 24),
-                const SizedBox(height: 24),
-                // NumbersWidget(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    buildButton(context, token, 'Token'),
-                    buildDivider(),
-                    buildButton(context, Type, 'Type'),
-                    buildDivider(),
-                    buildButton(context, Gender, 'Gender'),
-                  ],
-                ),
-                const SizedBox(height: 48),
-                buildAbout(user),
-              ],
-            ),
+              ),
+              ListView(
+                physics: BouncingScrollPhysics(),
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 5,
+                      ),
+                      ProfileAnimatedDrawer(),
+                      SizedBox(
+                        width: 60,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: imageWidget(
+                          imagePath: image,
+                          onClicked: () async {},
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  buildName(user),
+                  const SizedBox(height: 24),
+                  const SizedBox(height: 15),
+                  // NumbersWidget(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      buildButton(context, token, 'Token'),
+                      buildDivider(),
+                      buildButton(context, Type, 'Type'),
+                      buildDivider(),
+                      buildButton(context, Gender, 'Gender'),
+                    ],
+                  ),
+                  const SizedBox(height: 48),
+                  buildAbout(user),
+                ],
+              ),
+            ]),
           );
         },
       ),
@@ -128,25 +154,27 @@ class _ProfilePageState extends State<ProfilePage> {
           Text(
             name,
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: mPrimaryTextColor),
+                fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 5),
           Text(
             emailStorage,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1),
           )
         ],
       );
 
   Widget buildAbout(User user) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 48),
+        padding: const EdgeInsets.symmetric(horizontal: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-              color: Colors.deepPurple,
+              color: Colors.black,
               elevation: 100,
               shadowColor: Colors.white,
               shape: RoundedRectangleBorder(
@@ -234,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: Colors.white,
                           ),
                           const Text(
-                            "Phone Number: ",
+                            "Phone: ",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -258,13 +286,14 @@ class _ProfilePageState extends State<ProfilePage> {
 }
 
 Widget buildDivider() => Container(
-      height: 24,
-      child: VerticalDivider(),
+      height: 25,
+      child: VerticalDivider(
+        color: Colors.white,
+      ),
     );
 
 Widget buildButton(BuildContext context, String value, String text) =>
     MaterialButton(
-      padding: EdgeInsets.symmetric(vertical: 4),
       onPressed: () {},
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       child: Column(

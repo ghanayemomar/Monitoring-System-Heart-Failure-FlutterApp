@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
+import 'package:oma/Screens/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
@@ -19,16 +21,15 @@ class NavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        child: Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [mBackgroundColor, mSecondBackgroundColor],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Padding(
+        child: Stack(children: [
+          Container(
+              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              child: SvgPicture.asset(
+                "images/signup.svg",
+                fit: BoxFit.cover,
+              )),
+          Padding(
             padding: const EdgeInsets.fromLTRB(24.0, 80, 24, 0),
             child: Column(
               children: [
@@ -106,14 +107,14 @@ class NavigationDrawer extends StatelessWidget {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: ((context) => LoginScreen()),
+                          builder: ((context) => WelcomeScreen()),
                         ),
                       );
                     }),
               ],
             ),
           ),
-        ),
+        ]),
       ),
     );
   }

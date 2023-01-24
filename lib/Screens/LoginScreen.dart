@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/PasswordResetScreen.dart';
-import 'package:oma/Screens/Welcome.dart';
-import 'package:oma/Utils/Color_utils.dart';
+import 'package:oma/Screens/SignUpScreen.dart';
+import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Widget/AnimatedWidget/AnimatedIconBack.dart';
+import 'package:oma/Widget/AnimatedWidget/AnimatedIconWelcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Widget/My_Buttom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,97 +59,48 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          _focusNode1.unfocus();
-          _focusNode2.unfocus();
-        },
-        child: Container(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
+      body: Stack(children: [
+        Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 530,
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4"),
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            image: DecorationImage(
+                image: AssetImage('images/login.png'), fit: BoxFit.cover),
+          ),
+        ),
+        ////
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 60),
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                  fontSize: 54,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 15),
+            )),
+        GestureDetector(
+          onTap: () {
+            _focusNode1.unfocus();
+            _focusNode2.unfocus();
+          },
           child: SingleChildScrollView(
             child: ModalProgressHUD(
               inAsyncCall: showSpinner,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // MyWidget(),
-                  SizedBox(height: 30),
-                  //// arrow,sign in and iconImage ///////////////////////////////////////////////////////////////
-
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: ((context) => WelcomeScreen())));
-                            },
-                            child: const Icon(
-                              size: 28,
-                              Icons.arrow_back,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              'Sign in',
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Image.asset(
-                              'images/io8.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 30),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          'Take control of your privacy and protect your data online',
-                          style: TextStyle(fontSize: 28),
-                        ),
-                      ),
-                      SizedBox(height: 50),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Image.asset(
-                          'images/io10.png',
-                          width: 150,
-                          height: 150,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ////////////////////////////////////////////////////////////////////////////////////////
+                  SizedBox(height: 190),
                   Form(
                     key: _formKey,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         children: [
-                          SizedBox(height: 20),
                           SizedBox(
-                            height: 25,
+                            height: 45,
                           ),
-
-                          SizedBox(height: 20),
                           ////Enter Email//////////////////////////////////////////////////////////////////////
                           TextFormField(
                             focusNode: _focusNode1,
@@ -165,13 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
-                              errorStyle: TextStyle(
-                                  color: Color.fromARGB(255, 24, 25, 26),
-                                  fontSize: 17),
+                              errorStyle:
+                                  TextStyle(color: Colors.red, fontSize: 17),
                               labelText: 'Email',
                               prefixIcon: Icon(
                                 Icons.email,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                               // hintText: 'Enter Your Email',
                               contentPadding: EdgeInsets.symmetric(
@@ -185,8 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1,
+                                  color: Colors.black,
+                                  width: 2,
                                 ),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -217,12 +169,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             obscureText: true,
                             decoration: InputDecoration(
-                              errorStyle: TextStyle(
-                                  color: Color.fromARGB(255, 24, 25, 26),
-                                  fontSize: 17),
+                              errorStyle:
+                                  TextStyle(color: Colors.red, fontSize: 17),
                               prefixIcon: Icon(
                                 Icons.lock,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                               labelText: 'Password',
                               // hintText: 'Enter Your Password',
@@ -237,8 +188,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1,
+                                  color: Colors.black,
+                                  width: 2,
                                 ),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -246,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Colors.blueGrey,
+                                  color: Colors.black,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.all(
@@ -255,28 +206,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            PasswordResetScreen())));
-                              },
-                              child: Text('Forgot Password?'),
-                            ),
-                          ),
                         ],
                       ),
                     ),
                   ),
                   ////Login Button ///////////////////////////////////////////////////////////
-
-                  const SizedBox(height: 25),
+                  SizedBox(
+                    height: 20,
+                  ),
                   MyButton(
                     color: Colors.black,
                     title: 'Login',
@@ -312,13 +249,44 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       }
                     },
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedIconWelcome(),
+                      Text("Don't have an account ? "),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: ((context) => SignUpScreen())));
+                          },
+                          child: Text("Sign Up",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold)))
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: ((context) => PasswordResetScreen())));
+                      },
+                      child: Text(
+                        'Reset Password',
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }

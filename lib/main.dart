@@ -1,18 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:oma/Screens/EmergencyCall.dart';
-import 'package:oma/Screens/HealthMonitoringScreen.dart';
-import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
 import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/TermsAndServicesScreen.dart';
 import 'package:oma/Screens/welcome.dart';
+import 'package:oma/Widget/MapWidget/Location.dart';
 import '../Screens/HomePageScreen.dart';
+import 'package:oma/Screens/Warning.dart';
 import '../Screens/SignUpScreen.dart';
 import '../Screens/LoginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Drawer/navigation_drawer.dart';
+import 'Screens/EmergencyCall.dart';
+import 'Screens/HomePageScreen.dart';
 import 'Screens/PasswordResetScreen.dart';
 import 'UserProfile/Profile_Page.dart';
 
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: EmergencyScreen(),
+        home: OnBoardScreen(),
         routes: {
           LoginScreen.screenRoute: (context) => LoginScreen(),
           SignUpScreen.screenRoute: (context) => SignUpScreen(),
@@ -39,9 +38,11 @@ class MyApp extends StatelessWidget {
           ProfilePage.screenRoute: (context) => ProfilePage(),
           NavigationDrawer.screenRoute: (context) => NavigationDrawer(),
           MedicalProfileScreen.screenRoute: (context) => MedicalProfileScreen(),
-          HealthMonirtoring.screenRoute: (context) => HealthMonirtoring(),
+          Warning.screenRoute: (context) => Warning(),
           EmergencyScreen.screenRoute: (context) => EmergencyScreen(),
           TermsAndServices.screenRoute: (context) => TermsAndServices(),
+          WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+          Location.screenRoute: (context) => Location(),
         });
   }
 }
