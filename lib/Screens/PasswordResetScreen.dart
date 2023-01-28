@@ -14,88 +14,106 @@ class PasswordResetScreen extends StatefulWidget {
 class _PasswordResetScreenState extends State<PasswordResetScreen> {
   final _formKey = GlobalKey<FormState>();
   String _email = ' ';
+  final FocusNode _focusNode1 = FocusNode();
+  void initState() {
+    super.initState();
+    _focusNode1.addListener(() {
+      if (!_focusNode1.hasFocus) {
+        FocusScope.of(context).unfocus();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/resetPassword.png'),
-                fit: BoxFit.cover),
+    return GestureDetector(
+      onTap: () {
+        _focusNode1.unfocus();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/resetPassword.png'),
+                  fit: BoxFit.cover),
+            ),
           ),
-        ),
-        SafeArea(
-          child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
-              child: const Text(
-                'Reset Your Password',
-                style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 5),
-              )),
-        ),
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 300.0, right: 50, left: 50),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) => _email = value!,
-                    decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle:
-                            TextStyle(fontSize: 20, color: Colors.white),
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Colors.white,
-                        )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  MyButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        _sendPasswordResetEmail();
-                      }
-                    },
-                    color: Colors.black,
-                    title: ('Reset Password'),
-                  ),
-                  TextButton(
-                    child: Text(
-                      "Not You?",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 30),
+          SafeArea(
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+                child: const Text(
+                  'Reset Your Password',
+                  style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 5),
+                )),
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 300.0, right: 50, left: 50),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      focusNode: _focusNode1,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) => _email = value!,
+                      decoration: InputDecoration(
+                          labelText: 'Email',
+                          labelStyle:
+                              TextStyle(fontSize: 20, color: Colors.white),
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          )),
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, LoginScreen.screenRoute);
-                    },
-                  )
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    MyButton(
+                      onPressed: () {
+                        _focusNode1.unfocus();
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          _sendPasswordResetEmail();
+                          Navigator.pushNamed(context, LoginScreen.screenRoute);
+                        }
+                      },
+                      color: Colors.black,
+                      title: ('Reset Password'),
+                    ),
+                    TextButton(
+                      child: Text(
+                        "Not You?",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 30),
+                      ),
+                      onPressed: () {
+                        _focusNode1.unfocus();
+                        Navigator.pushNamed(context, LoginScreen.screenRoute);
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 

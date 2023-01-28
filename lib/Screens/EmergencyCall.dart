@@ -5,7 +5,7 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import '../Widget/AnimatedWidget/AnimatedIconBack.dart';
 import './constant.dart';
-import 'package:telephony/telephony.dart';
+// import 'package:telephony/telephony.dart';
 
 _callNumber() async {
   const number = '101'; //set the number here
@@ -23,19 +23,19 @@ _messageNumber() {
 }
 
 class sendMessage {
-  final telephony = Telephony.instance;
+  // final telephony = Telephony.instance;
 
   sendMessage(Future<String> sendSMS);
 
   void sendSMS(String number, String senderNumber) {
-    try {
-      telephony.sendSms(
-        to: senderNumber,
-        message: number,
-      );
-    } catch (e) {
-      //Here Message Failed due to some reason
-    }
+    // try {
+    //   telephony.sendSms(
+    //     to: senderNumber,
+    //     message: number,
+    //   );
+    // } catch (e) {
+    //   //Here Message Failed due to some reason
+    // }
   }
 }
 
@@ -98,8 +98,7 @@ class EmergencyScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     sendMessage(sendSMS(
-                        message: 'message',
-                        recipients: ['0569191911,0569101011,01231112310']));
+                        message: 'message', recipients: ['0569191911']));
                   },
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
