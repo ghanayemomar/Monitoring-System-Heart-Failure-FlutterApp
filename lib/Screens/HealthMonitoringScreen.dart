@@ -45,15 +45,12 @@ class _HealthMonirtoringState extends State<HealthMonirtoring> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Column(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            HealthMonitoringWidget(
-              x: widget.x,
-            ),
-
-            // LineChartSample()
-          ],
+        child: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: HealthMonitoringWidget(
+            x: widget.x,
+          ),
         ),
       ),
     );

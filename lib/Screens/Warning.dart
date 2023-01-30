@@ -17,6 +17,7 @@ class Warning extends StatefulWidget {
 class _WarningState extends State<Warning> {
   var _data;
   late var x;
+  int DisplayOneTime = 1;
 
   ///int x = 80;
 
@@ -38,33 +39,36 @@ class _WarningState extends State<Warning> {
 
           if (x > 110 || x < 60) {
             Future.delayed(Duration(seconds: 0), () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text(
-                      'WARNING!',
-                      style: TextStyle(
-                          color: Colors.red, fontSize: 22, letterSpacing: 2),
-                    ),
-                    content: Text(
-                      'The state is abnormal',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    actions: <Widget>[
-                      TextButton(
-                        child: Text(
-                          'OK',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
+              if (DisplayOneTime != 0) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(
+                        'WARNING!',
+                        style: TextStyle(
+                            color: Colors.red, fontSize: 22, letterSpacing: 2),
                       ),
-                    ],
-                  );
-                },
-              );
+                      content: Text(
+                        'The state is abnormal',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text(
+                            'OK',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+                DisplayOneTime--;
+              }
             });
           }
           return HealthMonirtoring(

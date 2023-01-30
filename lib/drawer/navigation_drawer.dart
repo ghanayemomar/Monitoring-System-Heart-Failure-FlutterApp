@@ -4,12 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oma/Screens/HomePageScreen.dart';
 import 'package:oma/Screens/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
 import 'package:oma/Screens/TermsAndServicesScreen.dart';
 import '../UserProfile/profile_page.dart';
 import 'drawer_item.dart';
-import '../Screens/LoginScreen.dart';
 import '../Widget/MainWidget/constant.dart';
 
 class NavigationDrawer extends StatelessWidget {
@@ -122,7 +120,7 @@ class NavigationDrawer extends StatelessWidget {
   Widget headerWidget() {
     return Column(
       children: [
-        Container(width: 150, child: Image.asset('images/8376466.png')),
+        Container(width: 150, child: Image.asset('images/male2.png')),
         const SizedBox(
           height: 10,
         ),
