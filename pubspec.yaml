@@ -62,17 +62,9 @@ dependencies:
   flutter_local_notifications: ^13.0.0
   flutter_native_timezone: ^2.0.0
   rxdart: ^0.27.7
- # telephony: ^0.2.0
+  telephony: ^0.2.0
   flutter_sms: ^2.3.3
   awesome_dialog: ^3.0.2
-  permission_handler: ^10.2.0
- 
-
-
-
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

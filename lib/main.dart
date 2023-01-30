@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oma/Screens/MedicalHistoryScreen.dart';
 import 'package:oma/Screens/MedicalProfileScreen.dart';
 import 'package:oma/Screens/OnBoardScreen.dart';
 import 'package:oma/Screens/TermsAndServicesScreen.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: OnBoardScreen(),
+        home: HomePageScreen(),
+
         routes: {
           //  ModifyImage.screenRoute: (context) => ModifyImage(),
           LoginScreen.screenRoute: (context) => LoginScreen(),
