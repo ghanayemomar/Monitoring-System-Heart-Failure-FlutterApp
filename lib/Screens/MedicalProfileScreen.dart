@@ -38,7 +38,7 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
   String Type = '';
 
   String _emailDriver = " ";
-
+  bool isDataLoaded = false;
   @override
   void initState() {
     setState(() {
@@ -49,26 +49,54 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     setState(() {
       _emailDriver = prefs.getString('emailDriver')!;
       _name = prefs.getString('driverName')!;
+      FirebaseFirestore.instance
+          .collection("Medical")
+          .doc(_emailDriver)
+          .get()
+          .then((snapshot) {
+        if (snapshot.exists) {
+          age = snapshot.data()!['age'].toString();
+          blood = snapshot.data()!['blood_type'].toString();
+          attack = snapshot.data()!['had_heart_attack'];
+          height = snapshot.data()!['height'].toString();
+          weight = snapshot.data()!['weight'].toString();
+          illnes = snapshot.data()!['illnes'].toString();
+          medication = snapshot.data()!['medication_information:'].toString();
+          isDataLoaded = true;
+        }
+      });
     });
+    // setState(() {
+    //   FirebaseFirestore.instance
+    //       .collection("Users")
+    //       .doc(_emailDriver)
+    //       .get()
+    //       .then((snapshotUsers) {
+    //     if (snapshotUsers.exists) {
+    //       image = snapshotUsers.data()!['image'];
+    //       isDataLoaded = true;
+    //     }
+    //   });
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection("Medical")
-            .doc(_emailDriver)
-            .snapshots(),
+      body: FutureBuilder(
+        future: getData(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData)
+          if (!isDataLoaded)
+            // ignore: curly_braces_in_flow_control_structures
             return Scaffold(
                 body: Center(
                     child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 CircularProgressIndicator(),
                 SizedBox(
@@ -80,14 +108,6 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
                 )
               ],
             )));
-
-          age = snapshot.data!['age'];
-          blood = snapshot.data!['blood_type'];
-          attack = snapshot.data!['had_heart_attack'];
-          height = snapshot.data!['height'];
-          illnes = snapshot.data!['illnes'];
-          medication = snapshot.data!['medication_information:'];
-          weight = snapshot.data!['weight'];
 
           return Scaffold(
             body: Stack(
@@ -109,9 +129,10 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
                               padding: EdgeInsets.only(top: 50, left: 10),
                               alignment: Alignment.bottomLeft,
                               child: animayedIconBack()),
-                          const CircleAvatar(
+                          CircleAvatar(
                             radius: 60.0,
                             backgroundImage: AssetImage('images/4138927.png'),
+                            //NetworkImage(image),
                           ),
                           const SizedBox(
                             height: 5.0,

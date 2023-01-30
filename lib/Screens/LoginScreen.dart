@@ -218,6 +218,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.black,
                     title: 'Login',
                     onPressed: () async {
+                      _focusNode1.unfocus();
+                      _focusNode2.unfocus();
                       if (_formKey.currentState!.validate()) {
                         null;
                       }
@@ -257,6 +259,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text("Don't have an account ? "),
                       InkWell(
                           onTap: () {
+                            _focusNode1.unfocus();
+                            _focusNode2.unfocus();
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: ((context) => SignUpScreen())));
@@ -271,6 +275,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.center,
                     child: TextButton(
                       onPressed: () {
+                        _focusNode1.unfocus();
+                        _focusNode2.unfocus();
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: ((context) => PasswordResetScreen())));
                       },

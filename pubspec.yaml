@@ -65,13 +65,6 @@ dependencies:
   telephony: ^0.2.0
   flutter_sms: ^2.3.3
   awesome_dialog: ^3.0.2
- 
-
-
-
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool showSpinner = false;
   String _Gender = 'Select...';
   String _image =
-      'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80';
+      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
   String _Type = '';
   bool _family = false;
@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       // backgroundColor: Colors.white,
       body: Stack(fit: StackFit.expand, children: [
         Container(
@@ -370,7 +370,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: _phoneController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Enter youre Phone Number';
+                                  return 'Enter your Phone Number';
                                 }
                                 return null;
                               },
@@ -546,10 +546,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                       SizedBox(
                                         width: 250,
-                                        height: 40,
+                                        height: 50,
                                         child: Visibility(
                                           visible: _driver,
                                           child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Rquired';
+                                              }
+                                              return null;
+                                            },
                                             controller: _TokenDriverController,
                                             focusNode: _focusNode9,
                                             style: TextStyle(
@@ -579,9 +586,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             ),
                                           ),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
+                                  SizedBox(
+                                    height: 20,
+                                  )
                                 ],
                               ),
                             ),
@@ -603,8 +613,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   DropdownButtonFormField<String>(
                                     value: _Gender,
                                     validator: ((value) {
-                                      if (value == null) {
-                                        return 'Please Select an option';
+                                      if (value == 'Select...') {
+                                        return 'Please Select an Gender option';
                                       }
                                       return null;
                                     }),
@@ -690,56 +700,71 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            null;
-                          } // setState(() {
-                          //   saveContact();
-                          // });
+                            // setState(() {
+                            //   saveContact();
+                            // });
 
-                          User? user = await SignUpUsingEmailPassword(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                              context: context);
+                            User? user = await SignUpUsingEmailPassword(
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text.trim(),
+                                context: context);
 
-                          if (_family == true) {
-                            _Type = "Family";
-                          } else if (_driver == true) {
-                            _Type = "Driver";
-                          }
-
-                          if (user != null) {
-                            FirebaseFirestore.instance
-                                .collection("Users")
-                                .doc(_emailController.text)
-                                .set({
-                              "first_name": _FirstNameController.text.trim(),
-                              "last_name": _LastNameController.text.trim(),
-                              "email":
-                                  _emailController.text.trim().toLowerCase(),
-                              "phone": _phoneController.text.trim(),
-                              "address": _addressController.text.trim(),
-                              "Type": _Type,
-                              "Gender": _Gender,
-                              "token_driver":
-                                  _TokenDriverController.text.trim(),
-                              "image": _image,
-                            }).then((vlaue) => {
-                                      //print(_emailController.text.trim())
-                                    });
-                            if (_Type == "Driver") {
-                              Navigator.of(context)
-                                  .pushReplacement(MaterialPageRoute(
-                                      builder: ((context) => MedicalHistoryPage(
-                                            email: _emailController.text.trim(),
-                                          ))));
-                            } else if (_Type == "Family") {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: ((context) => Token(
-                                          familyEmail:
-                                              _emailController.text))));
+                            if (_family == true) {
+                              _Type = "Family";
+                            } else if (_driver == true) {
+                              _Type = "Driver";
                             }
 
-                            //lets make a new screen
+                            if (user != null) {
+                              FirebaseFirestore.instance
+                                  .collection("Users")
+                                  .doc(_emailController.text)
+                                  .set({
+                                "first_name": _FirstNameController.text.trim(),
+                                "last_name": _LastNameController.text.trim(),
+                                "email":
+                                    _emailController.text.trim().toLowerCase(),
+                                "phone": _phoneController.text.trim(),
+                                "address": _addressController.text.trim(),
+                                "Type": _Type,
+                                "Gender": _Gender,
+                                "token_driver":
+                                    _TokenDriverController.text.trim(),
+                                "image": _image,
+                              }).then((vlaue) => {
+                                        //print(_emailController.text.trim())
+                                      });
+                              if (_Type == "Driver") {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            MedicalHistoryPage(
+                                              email:
+                                                  _emailController.text.trim(),
+                                            ))));
+                              } else if (_Type == "Family") {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: ((context) => Token(
+                                            familyEmail:
+                                                _emailController.text))));
+                              }
+
+                              //lets make a new screen
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  duration: Duration(seconds: 2),
+                                  content: Text(
+                                    'Please Enter a correct information',
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                              );
+                            }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
