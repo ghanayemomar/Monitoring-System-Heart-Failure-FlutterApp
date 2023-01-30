@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String add = '';
   String name = '';
   String image =
-      'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80';
+      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
   String last_name = '';
   String first_name = '';

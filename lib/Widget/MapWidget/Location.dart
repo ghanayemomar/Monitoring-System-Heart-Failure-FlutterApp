@@ -16,11 +16,24 @@ class Location extends StatefulWidget {
 }
 
 class LocationState extends State<Location> {
-  late Position c1;
+  Position c1 = Position(
+      latitude: 37.4219999,
+      longitude: -122.0840575,
+      timestamp: DateTime.now(),
+      accuracy: 30,
+      altitude: 10,
+      heading: 45,
+      speed: 20,
+      speedAccuracy: 15);
+
+  CameraPosition _kGooglePlex = CameraPosition(
+      target: LatLng(37.4219999, -122.0840575),
+      zoom: 14.4746,
+      tilt: 59.4407,
+      bearing: 193.9);
+
   var lat;
   var long;
-
-  late CameraPosition _kGooglePlex;
 
   Future getper() async {
     bool services;
@@ -44,6 +57,10 @@ class LocationState extends State<Location> {
 
   Future<void> getLatAndLong() async {
     c1 = await Geolocator.getCurrentPosition().then((value) => value);
+
+    print(
+        "--------------------------------------------------------------------------------");
+    print(c1.toString());
     lat = c1.latitude;
     long = c1.longitude;
 
@@ -89,7 +106,7 @@ class LocationState extends State<Location> {
       ),
       body: Stack(children: [
         _kGooglePlex == null || long == null || lat == null || c1 == null
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : SizedBox(
                 height: double.infinity,
                 width: 400,

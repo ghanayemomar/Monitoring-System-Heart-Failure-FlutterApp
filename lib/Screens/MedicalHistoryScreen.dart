@@ -195,7 +195,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                             ),
                           )),
                           validator: ((value) {
-                            if (value == null || value.isEmpty) {
+                            if (value == 'Select...') {
                               return 'Please Select an option';
                             }
                             return null;
@@ -369,6 +369,19 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
 
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: ((context) => LoginScreen())));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        duration: Duration(seconds: 2),
+                        content: Text(
+                          'Please Enter a correct information',
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                    );
                   }
                 },
               ),

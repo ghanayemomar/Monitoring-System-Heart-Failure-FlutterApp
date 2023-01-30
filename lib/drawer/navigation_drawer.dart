@@ -122,7 +122,7 @@ class NavigationDrawer extends StatelessWidget {
   Widget headerWidget() {
     return Column(
       children: [
-        Container(width: 150, child: Image.asset('images/8376466.png')),
+        Container(width: 150, child: Image.asset('images/male2.png')),
         const SizedBox(
           height: 10,
         ),

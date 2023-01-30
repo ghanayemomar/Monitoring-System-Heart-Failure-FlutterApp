@@ -17,7 +17,7 @@ class _HealthMonitoringWidgetState extends State<HealthMonitoringWidget>
   Color color = mSecondBackgroundColor;
   String text = 'normal';
   int heartSpeed = 1100;
-  late IconData icon;
+  IconData icon = Icons.favorite;
 
   @override
   void initState() {
