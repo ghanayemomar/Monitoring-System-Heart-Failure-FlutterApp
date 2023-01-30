@@ -30,8 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePageScreen(),
-
+        home: OnBoardScreen(),
         routes: {
           //  ModifyImage.screenRoute: (context) => ModifyImage(),
           LoginScreen.screenRoute: (context) => LoginScreen(),
