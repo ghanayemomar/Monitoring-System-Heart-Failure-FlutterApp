@@ -20,7 +20,8 @@ class MedicalProfileScreen extends StatefulWidget {
 }
 
 class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
-  String age = ' ';
+  String BirhDate = ' ';
+  String Age = '';
   String blood = ' ';
   bool attack = false;
   String height = ' ';
@@ -49,39 +50,32 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    _emailDriver = prefs.getString('emailDriver')!;
+    _name = prefs.getString('driverName')!;
     setState(() {
-      _emailDriver = prefs.getString('emailDriver')!;
-      _name = prefs.getString('driverName')!;
       FirebaseFirestore.instance
           .collection("Medical")
           .doc(_emailDriver)
           .get()
           .then((snapshot) {
         if (snapshot.exists) {
-          age = snapshot.data()!['age'].toString();
+          BirhDate = snapshot.data()!['birthdate'].toString();
           blood = snapshot.data()!['blood_type'].toString();
           attack = snapshot.data()!['had_heart_attack'];
           height = snapshot.data()!['height'].toString();
           weight = snapshot.data()!['weight'].toString();
           illnes = snapshot.data()!['illnes'].toString();
           medication = snapshot.data()!['medication_information:'].toString();
-          isDataLoaded = true;
+          DateTime birthdateTime = DateTime.parse(BirhDate);
+          Duration age = DateTime.now().difference(birthdateTime);
+          Age = (age.inDays / 365.25).toStringAsFixed(1);
+
+          // print(DateTime.now().toString().split(' ')[0]);
+
         }
+        isDataLoaded = true;
       });
     });
-    // setState(() {
-    //   FirebaseFirestore.instance
-    //       .collection("Users")
-    //       .doc(_emailDriver)
-    //       .get()
-    //       .then((snapshotUsers) {
-    //     if (snapshotUsers.exists) {
-    //       image = snapshotUsers.data()!['image'];
-    //       isDataLoaded = true;
-    //     }
-    //   });
-    // });
   }
 
   @override
@@ -138,7 +132,7 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
                             height: 5.0,
                           ),
                           Text(
-                            'Driver Name: ' + _name,
+                            'Driver: ' + _name,
                             style: TextStyle(
                               color: mTitleTextColor,
                               fontSize: 20.0,
@@ -229,7 +223,7 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Had Heart Attack Befor",
+                                                "Have you had a heart attack before?",
                                                 style: TextStyle(
                                                   fontSize: 15.0,
                                                 ),
@@ -357,7 +351,7 @@ class _MedicalProfileScreenState extends State<MedicalProfileScreen> {
                                 height: 5.0,
                               ),
                               Text(
-                                age,
+                                Age,
                                 style: TextStyle(
                                   fontSize: 15.0,
                                 ),

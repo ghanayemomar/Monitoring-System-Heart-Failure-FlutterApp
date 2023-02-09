@@ -105,6 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
+                  SizedBox(height: 20),
                   Row(
                     children: [
                       SizedBox(
@@ -123,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 55),
                   buildName(user),
                   const SizedBox(height: 24),
                   const SizedBox(height: 15),

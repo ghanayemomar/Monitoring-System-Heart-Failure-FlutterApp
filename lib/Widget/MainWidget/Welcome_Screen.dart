@@ -132,29 +132,27 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                         const Text(
                           'Welcome',
                           style: TextStyle(
-                            fontSize: 35,
-                            letterSpacing: 8,
+                            fontSize: 38,
+                            letterSpacing: 11,
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
+                        const SizedBox(height: 40),
                         Column(
                           // ignore: prefer_const_literals_to_create_immutables
                           children: [
                             Text(
-                              UserName + '\n\n' + emailStorage,
+                              UserName,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  letterSpacing: 1),
+                                  letterSpacing: 5),
                             ),
                             SizedBox(
-                              height: 15,
+                              height: 0,
                             ),
                           ],
                         ),
@@ -233,7 +231,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                               imageUrl: 'images/4138927.png',
                               title: 'Medical History',
                               press: () async {
-                                print(emailDriver);
+                                print(finalEmailDriver);
                                 print(driverName);
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

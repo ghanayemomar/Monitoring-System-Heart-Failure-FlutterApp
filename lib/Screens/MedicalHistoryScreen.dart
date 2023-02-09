@@ -23,11 +23,11 @@ class MedicalHistoryPage extends StatefulWidget {
 
 class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _AgeController = TextEditingController();
   final TextEditingController _WeightController = TextEditingController();
   final TextEditingController _HeightController = TextEditingController();
   final TextEditingController _MedicationController = TextEditingController();
   final TextEditingController _illnesController = TextEditingController();
+  final TextEditingController _BirthdateController = TextEditingController();
 
   bool _hadHeartAttack = false;
   bool _takesMedication = false;
@@ -77,6 +77,9 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
           },
           child: SingleChildScrollView(
             child: Column(children: [
+              SizedBox(
+                height: 20,
+              ),
               SafeArea(
                   child: Text(
                 "Medical History",
@@ -93,29 +96,68 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         /// Age ///////////////////////////////////////////////////////////////////////
+                        // TextFormField(
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please enter your age';
+                        //     }
+                        //     return null;
+                        //   },
+                        //   controller: _AgeController,
+                        //   focusNode: _focusNode5,
+                        //   keyboardType: TextInputType.number,
+                        //   decoration: InputDecoration(
+                        //       labelText: 'Age',
+                        //       labelStyle: TextStyle(color: Colors.white),
+                        //       prefixIcon: Icon(
+                        //         Icons.add_to_drive_sharp,
+                        //         color: Colors.white,
+                        //       ),
+                        //       enabledBorder: UnderlineInputBorder(
+                        //         borderSide: BorderSide(
+                        //           color: Colors.white,
+                        //         ),
+                        //       )),
+                        // ),
                         TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your age';
+                              return 'Please enter your birthdate';
                             }
                             return null;
                           },
-                          controller: _AgeController,
+                          controller: _BirthdateController,
                           focusNode: _focusNode5,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.datetime,
                           decoration: InputDecoration(
-                              labelText: 'Age',
-                              labelStyle: TextStyle(color: Colors.white),
-                              prefixIcon: Icon(
-                                Icons.add_to_drive_sharp,
+                            labelText: 'Birthdate',
+                            labelStyle: TextStyle(color: Colors.white),
+                            prefixIcon: IconButton(
+                              icon: Icon(
+                                Icons.calendar_today,
                                 color: Colors.white,
                               ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              )),
+                              onPressed: () async {
+                                final selectedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime.now(),
+                                );
+                                if (selectedDate != null) {
+                                  _BirthdateController.text =
+                                      selectedDate.toString().split(' ')[0];
+                                }
+                              },
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
+
                         SizedBox(height: 10),
 
                         /// Weight ////////////////////////////////////////////////////////////////////
@@ -150,7 +192,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your weight';
+                              return 'Please enter your height';
                             }
                             return null;
                           },
@@ -252,7 +294,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
               /// had Heart attack before ! ////////////////////////////////////////////
               CheckboxListTile(
                 title: Text(
-                  'Had Heart Attack Before',
+                  'Have you had a heart attack before?',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 value: _hadHeartAttack,
@@ -358,7 +400,7 @@ class _MedicalHistoryPageState extends State<MedicalHistoryPage> {
                         .collection("Medical")
                         .doc(widget.email)
                         .set({
-                      "age": _AgeController.text.trim(),
+                      "birthdate": _BirthdateController.text.trim(),
                       "weight": _WeightController.text.trim() + ' kg',
                       "height": _HeightController.text.trim() + ' cm',
                       "blood_type": _Blood,

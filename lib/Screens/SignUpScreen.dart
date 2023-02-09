@@ -370,7 +370,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: _phoneController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Enter your Phone Number';
+                                  return 'Enter Your Phone Number';
                                 }
                                 return null;
                               },
@@ -421,7 +421,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: _addressController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Enter your Adress';
+                                  return 'Enter Your Address';
                                 }
                                 return null;
                               },

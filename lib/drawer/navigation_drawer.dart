@@ -10,8 +10,28 @@ import '../UserProfile/profile_page.dart';
 import 'drawer_item.dart';
 import '../Widget/MainWidget/constant.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavigationDrawer extends StatefulWidget {
   static const screenRoute = 'NavigationDrawer';
+
+  @override
+  State<NavigationDrawer> createState() => _NavigationDrawerState();
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer> {
+  String emailStorage = '';
+  void initState() {
+    setState(() {
+      getData();
+    });
+  }
+
+  getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      emailStorage = prefs.getString('email')!;
+    });
+  }
+
   // const NavigationDrawer({Key? key}) : super(key: key);
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -131,11 +151,11 @@ class NavigationDrawer extends StatelessWidget {
               color: mPrimaryTextColor,
               fontWeight: FontWeight.bold),
         ),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
-        const Text(
-          "omarghanayem@gmail.com",
+        Text(
+          emailStorage,
           style: TextStyle(
               fontSize: 20,
               color: mPrimaryTextColor,

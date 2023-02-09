@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:oma/Widget/AnimatedWidget/AnimatedIconBack.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Location extends StatefulWidget {
   static const String screenRoute = 'LocationServices';
@@ -58,8 +59,6 @@ class LocationState extends State<Location> {
   Future<void> getLatAndLong() async {
     c1 = await Geolocator.getCurrentPosition().then((value) => value);
 
-    print(
-        "--------------------------------------------------------------------------------");
     print(c1.toString());
     lat = c1.latitude;
     long = c1.longitude;
@@ -126,9 +125,17 @@ class LocationState extends State<Location> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                LatLng latLng = LatLng(32.239075, 35.245778);
+                LatLng destination = LatLng(32.458581664051806,
+                    35.30094023131132); // LatLng of the second hospital
                 gmc.animateCamera(CameraUpdate.newCameraPosition(
-                    CameraPosition(target: latLng, zoom: 17)));
+                    CameraPosition(target: destination, zoom: 17)));
+                String googleUrl =
+                    'https://www.google.com/maps/dir/?api=1&destination=${destination.latitude},${destination.longitude}&travelmode=driving';
+                if (await canLaunch(googleUrl)) {
+                  await launch(googleUrl);
+                } else {
+                  throw 'Could not open the map app.';
+                }
               },
               child: Text(
                 "Go To Hospital",

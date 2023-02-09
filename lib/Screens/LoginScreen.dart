@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: _emailController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter Email';
+                                return 'Please Enter Your Email';
                               }
                               if (!RegExp(
                                       r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+')

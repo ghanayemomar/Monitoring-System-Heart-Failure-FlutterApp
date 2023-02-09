@@ -236,7 +236,7 @@ class _TokenState extends State<Token> {
                               const SnackBar(
                                 duration: Duration(seconds: 4),
                                 content: Text(
-                                  'Inalid Email or Token Number',
+                                  'Invalid Email or Token Number',
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontWeight: FontWeight.bold,

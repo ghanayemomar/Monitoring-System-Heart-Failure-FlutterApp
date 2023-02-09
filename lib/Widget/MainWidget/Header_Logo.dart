@@ -16,7 +16,7 @@ class HeaderLogo extends StatelessWidget {
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
           const Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, top: 30),
             child: heartAnimationIcon(
               iconSize: 90,
               x: 100,
@@ -25,7 +25,7 @@ class HeaderLogo extends StatelessWidget {
           const Text(
             'Safe Drive',
             style: TextStyle(
-                fontSize: 38,
+                fontSize: 40,
                 color: Colors.white,
                 fontWeight: FontWeight.w900,
                 letterSpacing: 8),

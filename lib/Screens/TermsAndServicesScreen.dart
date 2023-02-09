@@ -17,7 +17,7 @@ class TermsAndServices extends StatelessWidget {
           backgroundColor: mSecondBackgroundColor,
           elevation: 0,
           title: const Text(
-            "Terms And Servicrs",
+            "Terms And Services",
             style: TextStyle(color: mPrimaryTextColor, fontSize: 30),
           ),
           centerTitle: true,

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:oma/Screens/SafeDrive.dart';
 import 'package:oma/Screens/Welcome.dart';
 import './constant.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
@@ -16,7 +17,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   bool firstOpen = true;
   _onIntroEnd(context) async {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
+        .push(MaterialPageRoute(builder: (context) => SafeDriveScreen()));
   }
 
   // void getDeviceToken() {
@@ -75,10 +76,10 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             //margin: const EdgeInsets.all(22),
             child: Image.asset(
               "images/welcomeIcon.png",
-              //  fit: BoxFit.contain,
-              //height: MediaQuery.of(context).size.height,
-              // width: double.infinity,
-              // alignment: Alignment.topCenter,
+              fit: BoxFit.contain,
+              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              alignment: Alignment.topCenter,
             ),
           ),
           decoration: const PageDecoration(
@@ -223,8 +224,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
       onDone: () => _onIntroEnd(context),
       onSkip: () => _onIntroEnd(context),
       showSkipButton: true,
-      // skipFlex: 0,
-      //nextFlex: 0,
+      skipFlex: 0,
+      nextFlex: 0,
 
       skip: const Text(
         'Skip',

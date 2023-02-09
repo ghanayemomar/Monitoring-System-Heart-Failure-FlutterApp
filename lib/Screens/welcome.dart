@@ -11,25 +11,25 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  // final FocusNode _focusNode1 = FocusNode();
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _focusNode1.addListener(() {
-  //     if (!_focusNode1.hasFocus) {
-  //       FocusScope.of(context).unfocus();
-  //     }
-  //   });
-  // }
+  final FocusNode _focusNode1 = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    _focusNode1.addListener(() {
+      if (!_focusNode1.hasFocus) {
+        FocusScope.of(context).unfocus();
+      }
+    });
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(fit: StackFit.expand, children: [
         Container(
-          //padding: const EdgeInsets.only(top: 200),
-          //width: double.infinity,
-          //height: double.infinity,
+          padding: const EdgeInsets.only(top: 200),
+          width: double.infinity,
+          height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('images/login.png'), fit: BoxFit.cover),
@@ -37,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
         const SizedBox(
             child: Padding(
-          padding: EdgeInsets.all(43.0),
+          padding: EdgeInsets.all(72.0),
           child: Text(
             "Safe Drive",
             style: TextStyle(
