@@ -349,13 +349,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.0"
-  flutter_mailer:
-    dependency: "direct main"
-    description:
-      name: flutter_mailer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   flutter_native_timezone:
     dependency: "direct main"
     description:

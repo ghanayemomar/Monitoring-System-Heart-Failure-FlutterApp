@@ -15,8 +15,8 @@ class Warning extends StatefulWidget {
 }
 
 class _WarningState extends State<Warning> {
-  var _data;
-  late var x;
+  // var _data;
+  late String x;
   int DisplayOneTime = 1;
 
   ///int x = 80;
@@ -35,9 +35,9 @@ class _WarningState extends State<Warning> {
             body: Center(child: CircularProgressIndicator()),
           );
         if (snapshot.hasData && snapshot.data.snapshot.value != null) {
-          x = snapshot.data.snapshot.value;
-
-          if (x > 110 || x < 60) {
+          x = snapshot.data.snapshot.value.toString();
+          int NewX = int.parse(x);
+          if (NewX > 100 || NewX < 60) {
             Future.delayed(Duration(seconds: 0), () {
               if (DisplayOneTime != 0) {
                 showDialog(
@@ -72,7 +72,7 @@ class _WarningState extends State<Warning> {
             });
           }
           return HealthMonirtoring(
-            x: x,
+            x: NewX,
           );
         } else {
           return Scaffold(

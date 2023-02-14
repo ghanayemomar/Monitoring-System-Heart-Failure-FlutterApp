@@ -81,16 +81,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 const SizedBox(
                   height: 25,
                 ),
-                DrawerItem(
-                    name: 'Medical Profile',
-                    icon: Icons.medical_information,
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, MedicalProfileScreen.screenRoute);
-                    }),
-                const SizedBox(
-                  height: 25,
-                ),
                 const Divider(
                   thickness: 3,
                   height: 10,

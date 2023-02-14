@@ -1,12 +1,10 @@
-// ignore_for_file: file_names
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:oma/Screens/SafeDrive.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:oma/Screens/Welcome.dart';
 import './constant.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-
-// final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
 class OnBoardScreen extends StatefulWidget {
   @override
@@ -14,40 +12,24 @@ class OnBoardScreen extends StatefulWidget {
 }
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Firebase.initializeApp();
+    subscripeToAdmin();
+  }
+
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   bool firstOpen = true;
   _onIntroEnd(context) async {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SafeDriveScreen()));
   }
 
-  // void getDeviceToken() {
-  //   _firebaseMessaging.getToken().then((token) {
-  //     print("Device token: $token");
-  //     // Use this token to send notifications to the emulator
-  //   });
-  // }
-
-  @override
-  // void initState() {
-  //   super.initState();
-  //   Future.delayed(const Duration(seconds: 3), () {
-  //     if (!firstOpen) {
-  //       _onIntroEnd(context);
-  //     }
-  //   });
-  //   // getDeviceToken();
-  // }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // var pageDecoration = const PageDecoration(
-    //   titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
-    //   bodyTextStyle: TextStyle(fontSize: 19.0),
-    //   // descriptionPadding: EdgeInsets.all(16),
-    //   // pageColor: Colors.blueGrey,
-    //   // imagePadding: EdgeInsets.zero,
-    // );
 
     return
         //firstOpen==true
@@ -253,7 +235,19 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
         ),
       ),
     );
-    // : WillPopScope(
+  }
+
+  void getDeviceToken() async {
+    String? DeviceToken = await _firebaseMessaging.getToken();
+    print('DeviceToken : $DeviceToken ');
+  }
+
+  void subscripeToAdmin() {
+    _firebaseMessaging.subscribeToTopic('Admin');
+    print(_firebaseMessaging.subscribeToTopic('Admin').toString());
+  }
+}
+// : WillPopScope(
     //     onWillPop: () async => false,
     //     child: Scaffold(
     //         body: SizedBox(
@@ -273,5 +267,3 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     //       ),
     //     )),
     //   );
-  }
-}
